@@ -1,0 +1,10 @@
+C:\Users\doan\Desktop\TeamProject\Poker\bin\Debug\Poker.exe.config
+C:\Users\doan\Desktop\TeamProject\Poker\bin\Debug\Poker.exe
+C:\Users\doan\Desktop\TeamProject\Poker\bin\Debug\Poker.pdb
+C:\Users\doan\Desktop\TeamProject\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+C:\Users\doan\Desktop\TeamProject\Poker\obj\Debug\Poker.AddChips.resources
+C:\Users\doan\Desktop\TeamProject\Poker\obj\Debug\Poker.Form1.resources
+C:\Users\doan\Desktop\TeamProject\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\doan\Desktop\TeamProject\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+C:\Users\doan\Desktop\TeamProject\Poker\obj\Debug\Poker.exe
+C:\Users\doan\Desktop\TeamProject\Poker\obj\Debug\Poker.pdb
