@@ -148,11 +148,15 @@ namespace Poker
             call = bigBlind;
             MaximizeBox = false;
             MinimizeBox = false;
+            
             Updates.Start();
             InitializeComponent();
+
             width = this.Width;
             height = this.Height;
+
             Shuffle();
+            
             tbPot.Enabled = false;
             tbChips.Enabled = false;
             tbBotChips1.Enabled = false;
@@ -160,6 +164,7 @@ namespace Poker
             tbBotChips3.Enabled = false;
             tbBotChips4.Enabled = false;
             tbBotChips5.Enabled = false;
+
             tbChips.Text = "Chips : " + Chips.ToString();
             tbBotChips1.Text = "Chips : " + bot1Chips.ToString();
             tbBotChips2.Text = "Chips : " + bot2Chips.ToString();
@@ -172,7 +177,6 @@ namespace Poker
             Updates.Tick += Update_Tick;
 
             // Fixed names of controls
-
             textBoxBigBlind.Visible = true;
             textBoxSmallBlind.Visible = true;
             buttonBigBlind.Visible = true;
@@ -187,6 +191,8 @@ namespace Poker
             buttonSmallBlind.Visible = false;
             textBoxRaise.Text = (bigBlind * 2).ToString();
         }
+
+        //shuffling the cards
         async Task Shuffle()
         {
             bools.Add(PFturn);
@@ -205,8 +211,8 @@ namespace Poker
             bool check = false;
             Bitmap backImage = new Bitmap("Assets\\Back\\Back.png");
             int horizontal = 580, vertical = 480;
-
             Random r = new Random();
+
             for (i = ImgLocation.Length; i > 0; i--)
             {
                 int j = r.Next(i);
@@ -214,15 +220,18 @@ namespace Poker
                 ImgLocation[j] = ImgLocation[i - 1];
                 ImgLocation[i - 1] = k;
             }
+
             for (i = 0; i < 17; i++)
             {
-
                 Deck[i] = Image.FromFile(ImgLocation[i]);
+
                 var charsToRemove = new string[] { "Assets\\Cards\\", ".png" };
+
                 foreach (var c in charsToRemove)
                 {
                     ImgLocation[i] = ImgLocation[i].Replace(c, string.Empty);
                 }
+
                 Reserve[i] = int.Parse(ImgLocation[i]) - 1;
                 Holder[i] = new PictureBox();
                 Holder[i].SizeMode = PictureBoxSizeMode.StretchImage;
@@ -231,6 +240,7 @@ namespace Poker
                 this.Controls.Add(Holder[i]);
                 Holder[i].Name = "pb" + i.ToString();
                 await Task.Delay(200);
+
                 #region Throwing Cards
                 if (i < 2)
                 {
@@ -251,6 +261,7 @@ namespace Poker
                     playerPanel.Width = 180;
                     playerPanel.Visible = false;
                 }
+
                 if (bot1Chips > 0)
                 {
                     foldedPlayers--;
@@ -285,6 +296,7 @@ namespace Poker
                         }
                     }
                 }
+
                 if (bot2Chips > 0)
                 {
                     foldedPlayers--;
@@ -448,6 +460,7 @@ namespace Poker
                     }
                 }
                 #endregion
+
                 if (bot1Chips <= 0)
                 {
                     B1Fturn = true;
@@ -773,82 +786,89 @@ namespace Poker
             }
         }
 
-        void Rules(int c1, int c2, string currentText, ref double current, ref double Power, bool foldedTurn)
+        void Rules(int cardOne, int cardTwo, string currentText, ref double curentCardsValue, ref double power, bool foldedTurn)
         {
-            if (c1 == 0 && c2 == 1)
-            {
-            }
-            if (!foldedTurn || c1 == 0 && c2 == 1 && pStatus.Text.Contains("Fold") == false)
+            //if (cardOne == 0 && cardTwo == 1)
+            //{
+            //}
+
+            if (!foldedTurn || cardOne == 0 && cardTwo == 1 && pStatus.Text.Contains("Fold") == false)
             {
                 #region Variables
-                bool done = false, vf = false;
-                int[] Straight1 = new int[5];
-                int[] Straight = new int[7];
-                Straight[0] = Reserve[c1];
-                Straight[1] = Reserve[c2];
-                Straight1[0] = Straight[2] = Reserve[12];
-                Straight1[1] = Straight[3] = Reserve[13];
-                Straight1[2] = Straight[4] = Reserve[14];
-                Straight1[3] = Straight[5] = Reserve[15];
-                Straight1[4] = Straight[6] = Reserve[16];
-                var a = Straight.Where(o => o % 4 == 0).ToArray();
-                var b = Straight.Where(o => o % 4 == 1).ToArray();
-                var c = Straight.Where(o => o % 4 == 2).ToArray();
-                var d = Straight.Where(o => o % 4 == 3).ToArray();
-                var st1 = a.Select(o => o / 4).Distinct().ToArray();
-                var st2 = b.Select(o => o / 4).Distinct().ToArray();
-                var st3 = c.Select(o => o / 4).Distinct().ToArray();
-                var st4 = d.Select(o => o / 4).Distinct().ToArray();
-                Array.Sort(Straight); Array.Sort(st1); Array.Sort(st2); Array.Sort(st3); Array.Sort(st4);
+
+                bool done = false;
+                bool vf = false;
+
+                int[] smallStraight = new int[5];
+                int[] bigStraight = new int[7];
+                
+                bigStraight[0] = Reserve[cardOne];
+                bigStraight[1] = Reserve[cardTwo];
+                smallStraight[0] = bigStraight[2] = Reserve[12];
+                smallStraight[1] = bigStraight[3] = Reserve[13];
+                smallStraight[2] = bigStraight[4] = Reserve[14];
+                smallStraight[3] = bigStraight[5] = Reserve[15];
+                smallStraight[4] = bigStraight[6] = Reserve[16];
+
+                var straightOfClubs = bigStraight.Where(o => o % 4 == 0).ToArray();
+                var straightOfDiamonds = bigStraight.Where(o => o % 4 == 1).ToArray();
+                var straightOfHearts = bigStraight.Where(o => o % 4 == 2).ToArray();
+                var straightOfSpades = bigStraight.Where(o => o % 4 == 3).ToArray();
+                 
+                var straightOfClubsValue = straightOfClubs.Select(o => o / 4).Distinct().ToArray();
+                var straightOfDiamondsValue = straightOfDiamonds.Select(o => o / 4).Distinct().ToArray();
+                var straightOfHeartsValue = straightOfHearts.Select(o => o / 4).Distinct().ToArray();
+                var straightOfSpadesValue = straightOfSpades.Select(o => o / 4).Distinct().ToArray();
+
+                Array.Sort(bigStraight);
+                Array.Sort(straightOfClubsValue);
+                Array.Sort(straightOfDiamondsValue);
+                Array.Sort(straightOfHeartsValue);
+                Array.Sort(straightOfSpadesValue);
+
+                const int CardsOnTable = 16;
+                
                 #endregion
-                for (i = 0; i < 16; i++)
+                for (i = 0; i < CardsOnTable; i++)
                 {
-                    if (Reserve[i] == int.Parse(Holder[c1].Tag.ToString()) && Reserve[i + 1] == int.Parse(Holder[c2].Tag.ToString()))
+                    if (Reserve[i] == int.Parse(Holder[cardOne].Tag.ToString()) 
+                        && Reserve[i + 1] == int.Parse(Holder[cardTwo].Tag.ToString()))
                     {
-                        //Pair from Hand current = 1
+                        //Pair from Hand curentCardsValue = 1
+                        CheckForPairFromHand(ref curentCardsValue, ref power);
 
-                        rPairFromHand(ref current, ref Power);
+                        //Pair or Two Pairs from Table curentCardsValue = 2 || 0
+                        CheckForPairTwoPair(ref curentCardsValue, ref power);
 
-                        #region Pair or Two Pair from Table current = 2 || 0
-                        rPairTwoPair(ref current, ref Power);
-                        #endregion
+                        //Two Pairs curentCardsValue = 2
+                        CheckForTwoPair(ref curentCardsValue, ref power);
 
-                        #region Two Pair current = 2
-                        rTwoPair(ref current, ref Power);
-                        #endregion
+                        //Three of a kind curentCardsValue = 3
+                        CheckForThreeOfAKind(ref curentCardsValue, ref power, bigStraight);
 
-                        #region Three of a kind current = 3
-                        rThreeOfAKind(ref current, ref Power, Straight);
-                        #endregion
+                        //Straight curentCardsValue = 4
+                        CheckForStraight(ref curentCardsValue, ref power, bigStraight);
 
-                        #region Straight current = 4
-                        rStraight(ref current, ref Power, Straight);
-                        #endregion
+                        //Flush curentCardsValue = 5 || 5.5
+                        CheckForFlush(ref curentCardsValue, ref power, ref vf, smallStraight);
 
-                        #region Flush current = 5 || 5.5
-                        rFlush(ref current, ref Power, ref vf, Straight1);
-                        #endregion
+                        //Full House curentCardsValue = 6
+                        CheckForFullHouse(ref curentCardsValue, ref power, ref done, bigStraight);
 
-                        #region Full House current = 6
-                        rFullHouse(ref current, ref Power, ref done, Straight);
-                        #endregion
+                        //Four of a Kind curentCardsValue = 7
+                        CheckForFourOfAKind(ref curentCardsValue, ref power, bigStraight);
 
-                        #region Four of a Kind current = 7
-                        rFourOfAKind(ref current, ref Power, Straight);
-                        #endregion
+                        //Straight Flush curentCardsValue = 8 || 9
+                        CheckForBigStraightFlush(ref curentCardsValue, ref power, straightOfClubsValue, straightOfDiamondsValue, straightOfHeartsValue, straightOfSpadesValue);
 
-                        #region Straight Flush current = 8 || 9
-                        rStraightFlush(ref current, ref Power, st1, st2, st3, st4);
-                        #endregion
-
-                        #region High Card current = -1
-                        rHighCard(ref current, ref Power);
-                        #endregion
+                        //High Card curentCardsValue = -1
+                        CheckForHighCard(ref curentCardsValue, ref power);
                     }
                 }
             }
         }
-        private void rStraightFlush(ref double current, ref double Power, int[] st1, int[] st2, int[] st3, int[] st4)
+
+        private void CheckForBigStraightFlush(ref double current, ref double Power, int[] st1, int[] st2, int[] st3, int[] st4)
         {
             if (current >= -1)
             {
@@ -922,21 +942,21 @@ namespace Poker
                 }
             }
         }
-        private void rFourOfAKind(ref double current, ref double Power, int[] Straight)
+        private void CheckForFourOfAKind(ref double current, ref double Power, int[] bigStraight)
         {
             if (current >= -1)
             {
                 for (int j = 0; j <= 3; j++)
                 {
-                    if (Straight[j] / 4 == Straight[j + 1] / 4 && Straight[j] / 4 == Straight[j + 2] / 4 &&
-                        Straight[j] / 4 == Straight[j + 3] / 4)
+                    if (bigStraight[j] / 4 == bigStraight[j + 1] / 4 && bigStraight[j] / 4 == bigStraight[j + 2] / 4 &&
+                        bigStraight[j] / 4 == bigStraight[j + 3] / 4)
                     {
                         current = 7;
-                        Power = (Straight[j] / 4) * 4 + current * 100;
+                        Power = (bigStraight[j] / 4) * 4 + current * 100;
                         Win.Add(new Type() { Power = Power, Current = 7 });
                         sorted = Win.OrderByDescending(op1 => op1.Current).ThenByDescending(op1 => op1.Power).First();
                     }
-                    if (Straight[j] / 4 == 0 && Straight[j + 1] / 4 == 0 && Straight[j + 2] / 4 == 0 && Straight[j + 3] / 4 == 0)
+                    if (bigStraight[j] / 4 == 0 && bigStraight[j + 1] / 4 == 0 && bigStraight[j + 2] / 4 == 0 && bigStraight[j + 3] / 4 == 0)
                     {
                         current = 7;
                         Power = 13 * 4 + current * 100;
@@ -946,14 +966,14 @@ namespace Poker
                 }
             }
         }
-        private void rFullHouse(ref double current, ref double Power, ref bool done, int[] Straight)
+        private void CheckForFullHouse(ref double current, ref double Power, ref bool done, int[] bigStraight)
         {
             if (current >= -1)
             {
                 type = Power;
                 for (int j = 0; j <= 12; j++)
                 {
-                    var fh = Straight.Where(o => o / 4 == j).ToArray();
+                    var fh = bigStraight.Where(o => o / 4 == j).ToArray();
                     if (fh.Length == 3 || done)
                     {
                         if (fh.Length == 2)
@@ -998,14 +1018,14 @@ namespace Poker
                 }
             }
         }
-        private void rFlush(ref double current, ref double Power, ref bool vf, int[] Straight1)
+        private void CheckForFlush(ref double current, ref double Power, ref bool vf, int[] bigsmallStraight)
         {
             if (current >= -1)
             {
-                var f1 = Straight1.Where(o => o % 4 == 0).ToArray();
-                var f2 = Straight1.Where(o => o % 4 == 1).ToArray();
-                var f3 = Straight1.Where(o => o % 4 == 2).ToArray();
-                var f4 = Straight1.Where(o => o % 4 == 3).ToArray();
+                var f1 = bigsmallStraight.Where(o => o % 4 == 0).ToArray();
+                var f2 = bigsmallStraight.Where(o => o % 4 == 1).ToArray();
+                var f3 = bigsmallStraight.Where(o => o % 4 == 2).ToArray();
+                var f4 = bigsmallStraight.Where(o => o % 4 == 3).ToArray();
                 if (f1.Length == 3 || f1.Length == 4)
                 {
                     if (Reserve[i] % 4 == Reserve[i + 1] % 4 && Reserve[i] % 4 == f1[0] % 4)
@@ -1472,11 +1492,11 @@ namespace Poker
                 }
             }
         }
-        private void rStraight(ref double current, ref double Power, int[] Straight)
+        private void CheckForStraight(ref double current, ref double Power, int[] bigStraight)
         {
             if (current >= -1)
             {
-                var op = Straight.Select(o => o / 4).Distinct().ToArray();
+                var op = bigStraight.Select(o => o / 4).Distinct().ToArray();
                 for (int j = 0; j < op.Length - 4; j++)
                 {
                     if (op[j] + 4 == op[j + 4])
@@ -1506,13 +1526,13 @@ namespace Poker
                 }
             }
         }
-        private void rThreeOfAKind(ref double current, ref double Power, int[] Straight)
+        private void CheckForThreeOfAKind(ref double current, ref double Power, int[] bigStraight)
         {
             if (current >= -1)
             {
                 for (int j = 0; j <= 12; j++)
                 {
-                    var fh = Straight.Where(o => o / 4 == j).ToArray();
+                    var fh = bigStraight.Where(o => o / 4 == j).ToArray();
                     if (fh.Length == 3)
                     {
                         if (fh.Max() / 4 == 0)
@@ -1533,7 +1553,7 @@ namespace Poker
                 }
             }
         }
-        private void rTwoPair(ref double current, ref double Power)
+        private void CheckForTwoPair(ref double current, ref double Power)
         {
             if (current >= -1)
             {
@@ -1586,7 +1606,7 @@ namespace Poker
                 }
             }
         }
-        private void rPairTwoPair(ref double current, ref double Power)
+        private void CheckForPairTwoPair(ref double current, ref double Power)
         {
             if (current >= -1)
             {
@@ -1687,7 +1707,7 @@ namespace Poker
                 }
             }
         }
-        private void rPairFromHand(ref double current, ref double Power)
+        private void CheckForPairFromHand(ref double current, ref double Power)
         {
             if (current >= -1)
             {
@@ -1760,7 +1780,7 @@ namespace Poker
                 }
             }
         }
-        private void rHighCard(ref double current, ref double Power)
+        private void CheckForHighCard(ref double current, ref double Power)
         {
             if (current == -1)
             {
@@ -1824,7 +1844,7 @@ namespace Poker
                     }
                     if (current == 4)
                     {
-                        MessageBox.Show(currentText + " Straight ");
+                        MessageBox.Show(currentText + " bigStraight ");
                     }
                     if (current == 5 || current == 5.5)
                     {
@@ -1840,7 +1860,7 @@ namespace Poker
                     }
                     if (current == 8)
                     {
-                        MessageBox.Show(currentText + " Straight Flush ");
+                        MessageBox.Show(currentText + " bigStraight Flush ");
                     }
                     if (current == 9)
                     {
@@ -2401,7 +2421,7 @@ namespace Poker
             Winner(b4Type, b4Power, "Bot 4", bot4Chips, fixedLast);
             Winner(b5Type, b5Power, "Bot 5", bot5Chips, fixedLast);
         }
-        void AI(int c1, int c2, ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower, double botCurrent)
+        void AI(int cardOne, int cardTwo, ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower, double botCurrent)
         {
             if (!sFTurn)
             {
@@ -2427,7 +2447,7 @@ namespace Poker
                 }
                 if (botCurrent == 4)
                 {
-                    Straight(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    bigStraight(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
                 }
                 if (botCurrent == 5 || botCurrent == 5.5)
                 {
@@ -2443,13 +2463,13 @@ namespace Poker
                 }
                 if (botCurrent == 8 || botCurrent == 9)
                 {
-                    StraightFlush(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    bigStraightFlush(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
                 }
             }
             if (sFTurn)
             {
-                Holder[c1].Visible = false;
-                Holder[c2].Visible = false;
+                Holder[cardOne].Visible = false;
+                Holder[cardTwo].Visible = false;
             }
         }
         private void HighCard(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
@@ -2514,7 +2534,7 @@ namespace Poker
                 Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, tCall, tRaise);
             }
         }
-        private void Straight(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        private void bigStraight(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
         {
             Random str = new Random();
             int sCall = str.Next(3, 6);
@@ -2563,7 +2583,7 @@ namespace Poker
                 Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, fkCall, fkRaise);
             }
         }
-        private void StraightFlush(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        private void bigStraightFlush(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
         {
             Random sf = new Random();
             int sfCall = sf.Next(1, 3);
@@ -2978,7 +2998,7 @@ namespace Poker
                     if (Raise * 2 > int.Parse(textBoxRaise.Text))
                     {
                         textBoxRaise.Text = (Raise * 2).ToString();
-                        MessageBox.Show("You must raise atleast twice as the current raise !");
+                        MessageBox.Show("You must raise atleast twice as the curentCardsValue raise !");
                         return;
                     }
                     else

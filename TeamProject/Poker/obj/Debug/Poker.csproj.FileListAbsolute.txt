@@ -8,3 +8,13 @@ C:\Users\doan\Desktop\TeamProject\Poker\obj\Debug\Poker.Properties.Resources.res
 C:\Users\doan\Desktop\TeamProject\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
 C:\Users\doan\Desktop\TeamProject\Poker\obj\Debug\Poker.exe
 C:\Users\doan\Desktop\TeamProject\Poker\obj\Debug\Poker.pdb
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Poker\bin\Debug\Poker.exe.config
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.exe
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.pdb
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Poker\bin\Debug\Poker.exe
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Poker\bin\Debug\Poker.pdb
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.AddChips.resources
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.Form1.resources
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache

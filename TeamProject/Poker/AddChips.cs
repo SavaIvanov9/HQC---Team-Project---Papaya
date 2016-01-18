@@ -12,7 +12,7 @@ namespace Poker
 {
     public partial class AddChips : Form
     {
-        public int a=0;
+        public int a = 0;
         public AddChips()
         {
             FontFamily fontFamily = new FontFamily("Arial");
