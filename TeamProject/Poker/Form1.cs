@@ -2447,7 +2447,7 @@ namespace Poker
                 }
                 if (botCurrent == 4)
                 {
-                    bigStraight(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
+                    Straight(ref sChips, ref sTurn, ref sFTurn, sStatus, name, botPower);
                 }
                 if (botCurrent == 5 || botCurrent == 5.5)
                 {
@@ -2472,6 +2472,7 @@ namespace Poker
                 Holder[cardTwo].Visible = false;
             }
         }
+        
         private void HighCard(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, double botPower)
         {
             HP(ref sChips, ref sTurn, ref sFTurn, sStatus, botPower, 20, 25);
@@ -2534,7 +2535,7 @@ namespace Poker
                 Smooth(ref sChips, ref sTurn, ref sFTurn, sStatus, name, tCall, tRaise);
             }
         }
-        private void bigStraight(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
+        private void Straight(ref int sChips, ref bool sTurn, ref bool sFTurn, Label sStatus, int name, double botPower)
         {
             Random str = new Random();
             int sCall = str.Next(3, 6);
@@ -2624,6 +2625,7 @@ namespace Poker
             raising = true;
             sTurn = false;
         }
+
         private static double RoundN(int sChips, int n)
         {
             double a = Math.Round((sChips / n) / 100d, 0) * 100;
