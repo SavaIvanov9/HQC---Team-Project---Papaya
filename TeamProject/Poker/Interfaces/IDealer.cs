@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Poker.Interfaces
 {
-    class IDealer
+    public interface IDealer
     {
+        void DealCards();
+
+        void Shuffle();
+
+        void CheckHandPower();
+
+        void SetWinnder();
     }
 }

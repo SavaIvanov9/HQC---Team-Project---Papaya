@@ -8,5 +8,6 @@ namespace Poker.Models
 {
     public class Card
     {
+        
     }
 }

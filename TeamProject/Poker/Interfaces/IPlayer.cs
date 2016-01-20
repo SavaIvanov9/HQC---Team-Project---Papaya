@@ -8,5 +8,12 @@ namespace Poker.Interfaces
 {
     public interface IPlayer
     {
+        void Check();
+
+        void Raise();
+
+        void Call();
+
+        void Fold();
     }
 }

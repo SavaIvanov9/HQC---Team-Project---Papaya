@@ -13,7 +13,10 @@ namespace Poker.Players
         private string name;
         private int power;
 
-
+        public Bot(string name)
+        {
+            this.Name = name;
+        }
 
         public Bot(string name, IList<Card> hand, int power )
         {
@@ -22,7 +25,7 @@ namespace Poker.Players
             this.Power = power;
         }
 
-        public IList<Card> Hand
+        public override IList<Card> Hand
         {
             get
             {
@@ -36,7 +39,7 @@ namespace Poker.Players
             }
         }
 
-        public string Name
+        public override string Name
         {
             get
             {
@@ -49,6 +52,30 @@ namespace Poker.Players
             }
         }
 
-        public int Power { get; set; }
+        public override int Power
+        {
+            get { return this.power; }
+            set { this.power = value; }
+        }
+
+        public override void Check()
+        {
+
+        }
+
+        public override void Fold()
+        {
+
+        }
+
+        public override void Call()
+        {
+
+        }
+
+        public override void Raise()
+        {
+
+        }
     }
 }
