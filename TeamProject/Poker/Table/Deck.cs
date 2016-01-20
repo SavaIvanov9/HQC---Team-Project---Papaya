@@ -10,5 +10,10 @@ namespace Poker.Table
     public static class Deck
     {
         private static Stack<Card> deck;
+
+        public static void FillDeck()
+        {
+            //TODOR HODOR
+        }
     }
 }
