@@ -57,6 +57,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IDealer.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Players\Bot.cs" />
     <Compile Include="Models\Players\Character.cs" />
@@ -156,7 +158,6 @@
   <ItemGroup>
     <Folder Include="Core\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

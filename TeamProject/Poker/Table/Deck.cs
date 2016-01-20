@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker.Table
 {
-    class Deck
+    public static class Deck
     {
     }
 }

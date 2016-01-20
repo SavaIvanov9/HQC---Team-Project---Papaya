@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Poker.Enums
 {
-    class CardType
+    public enum CardType
     {
+        Hearts,
+        Spades,
+        Diamonds,
+        Clubs
     }
 }

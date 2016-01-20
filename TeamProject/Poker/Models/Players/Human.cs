@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker.Players
 {
-    class Human
+    public class Human : Character
     {
     }
 }
