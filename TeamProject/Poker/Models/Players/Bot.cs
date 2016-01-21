@@ -10,8 +10,8 @@ namespace Poker.Players
     public class Bot : Character
     {
 
-        public Bot(string name, IList<Card> hand, int power) 
-            :base(name, hand, power)
+        public Bot(string name, IList<Card> hand, int power,int chips) 
+            :base(name, hand, power,chips)
         {
             
         }

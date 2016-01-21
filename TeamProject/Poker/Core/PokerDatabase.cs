@@ -6,7 +6,7 @@ namespace Poker.Core
 {
     public class PokerDatabase:IPokerDatabase
     {
-        public IList<Card> deck
+        public IList<Card> Deck
         {
             get
             {
@@ -18,7 +18,7 @@ namespace Poker.Core
             }
         }
 
-        public IList<ICharacter> humanPlayers
+        public IList<ICharacter> HumanPlayers
         {
             get
             {
@@ -30,7 +30,7 @@ namespace Poker.Core
             }
         }
 
-        public IList<ICharacter> botPlayers
+        public IList<ICharacter> BotPlayers
         {
             get
             {

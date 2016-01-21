@@ -9,8 +9,8 @@ namespace Poker.Interfaces
 {
     public interface IPokerDatabase
     {
-        IList<Card> deck { get; set; }
-        IList<ICharacter> humanPlayers { get; set; }
-        IList<ICharacter> botPlayers { get; set; }
+        IList<Card> Deck { get; set; }
+        IList<ICharacter> HumanPlayers { get; set; }
+        IList<ICharacter> BotPlayers { get; set; }
     }
 }

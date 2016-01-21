@@ -18,7 +18,7 @@ namespace Poker.Table
         {
         }
 
-        public void SetWinnder()
+        public void SetWinner()
         {
         }
 

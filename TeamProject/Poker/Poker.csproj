@@ -63,12 +63,21 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IBotFactory.cs" />
+    <Compile Include="Interfaces\ICallable.cs" />
     <Compile Include="Interfaces\ICard.cs" />
+    <Compile Include="Interfaces\ICardDealable.cs" />
     <Compile Include="Interfaces\ICardFactory.cs" />
+    <Compile Include="Interfaces\ICheckable.cs" />
     <Compile Include="Interfaces\IDealer.cs" />
     <Compile Include="Interfaces\ICharacter.cs" />
+    <Compile Include="Interfaces\IDeckShuffler.cs" />
+    <Compile Include="Interfaces\IFoldable.cs" />
+    <Compile Include="Interfaces\IHandPowerChecker.cs" />
+    <Compile Include="Interfaces\IPlayable.cs" />
     <Compile Include="Interfaces\IPlayerFactory.cs" />
     <Compile Include="Interfaces\IPokerDatabase.cs" />
+    <Compile Include="Interfaces\IRaiseable.cs" />
+    <Compile Include="Interfaces\IWinnerSetter.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Players\Bot.cs" />
     <Compile Include="Models\Players\Character.cs" />

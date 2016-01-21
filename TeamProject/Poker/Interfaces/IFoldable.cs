@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Poker.Interfaces
 {
-    public interface ICharacter : IPlayable
+    public interface IFoldable
     {
+        void Fold(); 
     }
 }
