@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Poker.Enums;
+using Poker.Interfaces;
 
 namespace Poker.Models
 {
-    public class Card
+    public class Card : ICard
     {
-        //LOL
         private int cardPower;
         private CardType cardType;
 

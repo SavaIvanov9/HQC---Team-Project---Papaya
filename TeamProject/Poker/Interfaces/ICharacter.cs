@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker.Interfaces
 {
-    public interface IPlayer
+    public interface ICharacter
     {
         void Check();
 

@@ -62,8 +62,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IBotFactory.cs" />
+    <Compile Include="Interfaces\ICard.cs" />
+    <Compile Include="Interfaces\ICardFactory.cs" />
     <Compile Include="Interfaces\IDealer.cs" />
-    <Compile Include="Interfaces\IPlayer.cs" />
+    <Compile Include="Interfaces\ICharacter.cs" />
+    <Compile Include="Interfaces\IPlayerFactory.cs" />
+    <Compile Include="Interfaces\IPokerDatabase.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Players\Bot.cs" />
     <Compile Include="Models\Players\Character.cs" />

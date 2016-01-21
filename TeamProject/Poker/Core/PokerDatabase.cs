@@ -1,13 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using Poker.Interfaces;
+using Poker.Models;
 namespace Poker.Core
 {
-    public class PokerDatabase
+    public class PokerDatabase:IPokerDatabase
     {
-        //private List<Card> deck;
+        public IList<Card> deck
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IList<ICharacter> humanPlayers
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IList<ICharacter> botPlayers
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

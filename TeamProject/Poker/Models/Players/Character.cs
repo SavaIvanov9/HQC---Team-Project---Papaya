@@ -8,7 +8,7 @@ using Poker.Models;
 
 namespace Poker.Players
 {
-    public abstract class Character : IPlayer
+    public abstract class Character : ICharacter
     {
         private string name;
         private int power;
