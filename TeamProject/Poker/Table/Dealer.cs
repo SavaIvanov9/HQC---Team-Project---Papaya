@@ -3,10 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Poker.Interfaces;
 
 namespace Poker.Table
 {
-    public static class Dealer
+    public class Dealer : IDealer
     {
+        public void CheckHandPower()
+        {
+           
+        }
+
+        public void DealCards()
+        {
+        }
+
+        public void SetWinnder()
+        {
+        }
+
+        public void Shuffle()
+        {
+        }
     }
 }
