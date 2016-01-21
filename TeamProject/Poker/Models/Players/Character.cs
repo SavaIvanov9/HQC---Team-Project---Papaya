@@ -10,11 +10,22 @@ namespace Poker.Players
 {
     public abstract class Character : IPlayer
     {
-        public abstract string Name { get; set; }
+        private string name;
+        private int power;
+        private IList<Card> hand;
+    
+        protected Character(string name, IList<Card> hand, int power)
+        {
+            this.Name = name;
+            this.Hand = hand;
+            this.Power = power;
+        }
 
-        public abstract int Power { get; set; }
+        public string Name { get; set; }
 
-        public abstract IList<Card> Hand { get; set; }
+        public int Power { get; set; }
+
+        public IList<Card> Hand { get; set; }
 
         public abstract void Check();
 
