@@ -9,6 +9,7 @@ namespace Poker.Models
 {
     public class Card
     {
+        //LOL
         private int cardPower;
         private CardType cardType;
 

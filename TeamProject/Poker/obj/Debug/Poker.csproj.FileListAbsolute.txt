@@ -21,3 +21,6 @@ C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Tea
 C:\Users\Shadow\Desktop\loleh\HQC---Team-Project---Papaya\TeamProject\Poker\bin\Debug\Poker.exe.config
 C:\Users\Shadow\Desktop\loleh\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.exe
 C:\Users\Shadow\Desktop\loleh\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.pdb
+C:\Users\doan\Desktop\SoftUniStudent\TeamworkOOP\HQC---Team-Project---Papaya\TeamProject\Poker\bin\Debug\Poker.exe.config
+C:\Users\doan\Desktop\SoftUniStudent\TeamworkOOP\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.exe
+C:\Users\doan\Desktop\SoftUniStudent\TeamworkOOP\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.pdb
