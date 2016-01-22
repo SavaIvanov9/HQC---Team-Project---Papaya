@@ -1,45 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using Poker.Enums;
 using Poker.Interfaces;
 using Poker.Models;
 using Poker.Players;
 
 namespace Poker.Core
 {
-    public class PokerDatabase:IPokerDatabase
+    public class PokerDatabase : IPokerDatabase
     {
+        private IHumanFactory humanFactory;
         private IBotFactory botFactory;
-        private ICharacter character;
+        private ICardFactory cardFactory;
+
         public IList<ICharacter> botPlayers = new List<ICharacter>();
 
-        public IList<ICard> Deck
+        public IList<ICard> Deck { get; set; }
+
+        public IList<ICharacter> HumanPlayers { get; set; }
+
+        public IList<ICharacter> BotPlayers { get; set; }
+
+        public void AddBot(string name, IList<ICard> hand, int power, int chips)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            BotPlayers.Add(botFactory.CreateBot(name, hand, power, chips));
         }
 
-        public IList<ICharacter> HumanPlayers
+        public void AddHuman(string name, IList<ICard> hand, int power, int chips)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            HumanPlayers.Add(humanFactory.CreateHuman(name, hand, power, chips));
         }
 
-
-        public void AddBot(string name, IList<ICard> cards, int chips, int power)
+        public void AddCard(int cardPower, CardType cardType)
         {
-            botPlayers.Add(botFactory.CreateBot(name, cards, chips, power));
+            Deck.Add(cardFactory.CreateCard(cardPower, cardType));
         }
     }
 }
