@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -10,6 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Poker.Core;
+using Poker.Core.Factories;
+using Poker.Enums;
+using Poker.Interfaces;
+using Poker.Models;
 
 namespace Poker
 {
@@ -144,6 +150,18 @@ namespace Poker
 
         public Form1()
         {
+            IList<ICard> cards = new List<ICard>();
+            cards.Add(new Card(2, CardType.Clubs));
+            var botFactory = new BotFactory();
+            var pokerDatabase = new PokerDatabase();
+            //Test lol = new Test(botFactory, pokerDatabase);
+            IList<ICharacter> bots = new List<ICharacter>();
+
+            //pokerDatabase.AddBot("Bot1", cards, 2, 2);
+            bots.Add(botFactory.CreateBot("Steven", cards, 2));
+            DialogResult lol;
+            lol = MessageBox.Show(bots[0].Name);
+
             //bools.Add(PFturn); bools.Add(B1Fturn); bools.Add(B2Fturn); bools.Add(B3Fturn); bools.Add(B4Fturn); bools.Add(B5Fturn);
             call = bigBlind;
             MaximizeBox = false;

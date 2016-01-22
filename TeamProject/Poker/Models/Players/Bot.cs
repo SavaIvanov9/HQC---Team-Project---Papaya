@@ -11,8 +11,8 @@ namespace Poker.Players
     public class Bot : Character, IComputerControlled
     {
 
-        public Bot(string name, IList<Card> hand, int power,int chips) 
-            :base(name, hand, power,chips)
+        public Bot(string name, IList<ICard> cards,int chips, int power = 0) 
+            :base(name, cards, chips, power)
         {
             
         }
@@ -45,6 +45,11 @@ namespace Poker.Players
         public override void AllIn()
         {
             
+        }
+
+        public override string GetName()
+        {
+            return Name;
         }
     }
 }

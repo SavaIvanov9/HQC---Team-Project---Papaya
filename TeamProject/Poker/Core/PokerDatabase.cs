@@ -8,9 +8,11 @@ namespace Poker.Core
 {
     public class PokerDatabase:IPokerDatabase
     {
-        private readonly IBotFactory botFactory;
-        private readonly ICharacter character;
-        public IList<Card> Deck
+        private IBotFactory botFactory;
+        private ICharacter character;
+        public IList<ICharacter> botPlayers = new List<ICharacter>();
+
+        public IList<ICard> Deck
         {
             get
             {
@@ -34,21 +36,10 @@ namespace Poker.Core
             }
         }
 
-        public IList<ICharacter> BotPlayers
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
 
-        public void AddBot(string name, IList<Card> hand, int power, int chips)
+        public void AddBot(string name, IList<ICard> cards, int chips, int power)
         {
-            BotPlayers.Add(botFactory.CreateBot(name, hand, power, chips));
+            botPlayers.Add(botFactory.CreateBot(name, cards, chips, power));
         }
     }
 }

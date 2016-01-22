@@ -11,11 +11,11 @@ namespace Poker.Players
     public abstract class Character : ICharacter
     {
         private string name;
-        private int power;
-        private IList<Card> hand;
+        private int power = 0;
+        private IList<ICard> hand;
         private int chips;
     
-        protected Character(string name, IList<Card> hand, int power,int chips)
+        protected Character(string name, IList<ICard> cards,int chips, int power = 0)
         {
             this.Name = name;
             this.Hand = hand;
@@ -29,7 +29,7 @@ namespace Poker.Players
 
         public int Power { get; set; }
 
-        public IList<Card> Hand { get; set; }
+        public IList<ICard> Hand { get; set; }
 
         public abstract void Check();
 
@@ -40,5 +40,7 @@ namespace Poker.Players
         public abstract void Fold();
 
         public abstract void AllIn();
+
+        public abstract string GetName();
     }
 }

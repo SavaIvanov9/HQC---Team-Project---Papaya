@@ -10,9 +10,9 @@ namespace Poker.Interfaces
 {
     public interface IPokerDatabase
     {
-        IList<Card> Deck { get; set; }
+        IList<ICard> Deck { get; set; }
         IList<ICharacter> HumanPlayers { get; set; }
-        IList<ICharacter> BotPlayers { get; set; }
-        void AddBot(string name, IList<Card> hand, int power, int chips);
+        //IList<ICharacter> BotPlayers { get; set; }
+        void AddBot(string name, IList<ICard> hand, int power, int chips);
     }
 }

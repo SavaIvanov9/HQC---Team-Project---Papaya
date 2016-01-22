@@ -9,6 +9,6 @@ namespace Poker.Interfaces
 {
     public interface IHumanFactory
     {
-        ICharacter CreateHuman(string name, IList<Card> hand, int power, int chips);
+        ICharacter CreateHuman(string name, IList<ICard> hand, int power, int chips);
     }
 }

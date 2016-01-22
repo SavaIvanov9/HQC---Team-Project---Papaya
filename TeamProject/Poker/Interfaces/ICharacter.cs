@@ -8,5 +8,9 @@ namespace Poker.Interfaces
 {
     public interface ICharacter : IPlayable
     {
+        string Name { get; set; }
+        int Power { get; set; }
+        int Chips { get; set; }
+        IList<ICard> Hand { get; set; } 
     }
 }

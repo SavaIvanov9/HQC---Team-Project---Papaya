@@ -10,7 +10,7 @@ namespace Poker.Core.Factories
 {
     public class HumanFactory:IHumanFactory
     {
-        public ICharacter CreateHuman(string name, IList<Models.Card> hand, int power, int chips)
+        public ICharacter CreateHuman(string name, IList<ICard> hand, int power, int chips)
         {
             var player = new Human(name, hand, power, chips);
 

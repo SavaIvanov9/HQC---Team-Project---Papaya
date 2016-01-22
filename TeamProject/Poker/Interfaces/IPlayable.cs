@@ -9,5 +9,6 @@ namespace Poker.Interfaces
     public interface IPlayable : ICallable,IFoldable,IRaiseable,ICheckable,IEverythingGivable
     {
         int Chips { get; set; }
+        
     }
 }
