@@ -53,8 +53,9 @@
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Factories\BotFactory.cs" />
     <Compile Include="Core\Factories\CardFactory.cs" />
-    <Compile Include="Core\Factories\PlayerFactory.cs" />
+    <Compile Include="Core\Factories\HumanFactory.cs" />
     <Compile Include="Core\PokerDatabase.cs" />
+    <Compile Include="Core\Test.cs" />
     <Compile Include="Enums\CardType.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -76,7 +77,7 @@
     <Compile Include="Interfaces\IFoldable.cs" />
     <Compile Include="Interfaces\IHandPowerChecker.cs" />
     <Compile Include="Interfaces\IPlayable.cs" />
-    <Compile Include="Interfaces\IPlayerFactory.cs" />
+    <Compile Include="Interfaces\IHumanFactory.cs" />
     <Compile Include="Interfaces\IPokerDatabase.cs" />
     <Compile Include="Interfaces\IRaiseable.cs" />
     <Compile Include="Interfaces\IWinnerSetter.cs" />

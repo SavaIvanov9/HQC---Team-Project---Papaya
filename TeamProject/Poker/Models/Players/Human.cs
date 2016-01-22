@@ -35,5 +35,10 @@ namespace Poker.Players
         {
             
         }
+
+        public override void AllIn()
+        {
+            
+        }
     }
 }

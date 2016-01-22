@@ -13,6 +13,7 @@ namespace Poker.Players
         private string name;
         private int power;
         private IList<Card> hand;
+        private int chips;
     
         protected Character(string name, IList<Card> hand, int power,int chips)
         {
@@ -37,5 +38,7 @@ namespace Poker.Players
         public abstract void Call();
 
         public abstract void Fold();
+
+        public abstract void AllIn();
     }
 }

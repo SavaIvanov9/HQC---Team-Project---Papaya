@@ -41,5 +41,10 @@ namespace Poker.Players
         {
             throw new NotImplementedException();
         }
+
+        public override void AllIn()
+        {
+            
+        }
     }
 }

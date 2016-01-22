@@ -9,6 +9,6 @@ namespace Poker.Interfaces
 {
     public interface IBotFactory
     {
-        ICharacter CreateBot(string name, IList<Card> hand, int power);
+        ICharacter CreateBot(string name, IList<Card> hand, int power, int chips);
     }
 }

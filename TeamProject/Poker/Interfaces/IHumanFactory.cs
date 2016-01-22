@@ -7,8 +7,8 @@ using Poker.Models;
 
 namespace Poker.Interfaces
 {
-    public interface IPlayerFactory
+    public interface IHumanFactory
     {
-        ICharacter CreateHuman(string name, IList<Card> hand, int power);
+        ICharacter CreateHuman(string name, IList<Card> hand, int power, int chips);
     }
 }
