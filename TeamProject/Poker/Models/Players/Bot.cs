@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Poker.Interfaces;
 using Poker.Models;
 
 namespace Poker.Players
 {
-    public class Bot : Character
+    public class Bot : Character, IComputerControlled
     {
 
         public Bot(string name, IList<Card> hand, int power,int chips) 
@@ -34,6 +35,11 @@ namespace Poker.Players
         public override void Raise()
         {
 
+        }
+
+        public void MakeDecision()
+        {
+            throw new NotImplementedException();
         }
     }
 }

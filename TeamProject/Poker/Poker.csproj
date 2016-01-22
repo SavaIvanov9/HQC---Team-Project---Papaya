@@ -62,6 +62,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IBot.cs" />
     <Compile Include="Interfaces\IBotFactory.cs" />
     <Compile Include="Interfaces\ICallable.cs" />
     <Compile Include="Interfaces\ICard.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Interfaces\IDealer.cs" />
     <Compile Include="Interfaces\ICharacter.cs" />
     <Compile Include="Interfaces\IDeckShuffler.cs" />
+    <Compile Include="Interfaces\IEverythingGivable.cs" />
     <Compile Include="Interfaces\IFoldable.cs" />
     <Compile Include="Interfaces\IHandPowerChecker.cs" />
     <Compile Include="Interfaces\IPlayable.cs" />

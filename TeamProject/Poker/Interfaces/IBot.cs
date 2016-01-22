@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Poker.Interfaces
 {
-    public interface IPlayable : ICallable,IFoldable,IRaiseable,ICheckable,IEverythingGivable
+    public interface IComputerControlled
     {
-        int Chips { get; set; }
+        void MakeDecision();
     }
 }
