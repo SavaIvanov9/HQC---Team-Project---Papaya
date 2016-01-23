@@ -14,7 +14,7 @@ namespace Poker.Core.Factories
     {
         public ICharacter CreateBot(string name, IList<ICard> cards, int chips, int power = 0)
         {
-            var bot = new Bot(name, cards, chips, power);
+            ICharacter bot = new Bot(name, cards, chips, power);
             
             return bot;
         }

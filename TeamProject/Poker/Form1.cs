@@ -23,6 +23,14 @@ namespace Poker
     public partial class Form1 : Form
     {
         #region Variables
+
+        private readonly IBotFactory botFactory = new BotFactory();
+        private readonly IHumanFactory humanFactory = new HumanFactory();
+        private readonly ICardFactory cardFactory = new CardFactory();
+        private readonly IPokerDatabase database = new PokerDatabase();
+
+       
+
         ProgressBar turnTime = new ProgressBar();
         public int Nm; //TODO: refactor
         Panel playerPanel = new Panel();
@@ -152,15 +160,18 @@ namespace Poker
         {
             IList<ICard> cards = new List<ICard>();
             cards.Add(new Card(2, CardType.Clubs));
-            var botFactory = new BotFactory();
-            var pokerDatabase = new PokerDatabase();
-            //Test lol = new Test(botFactory, pokerDatabase);
+           // var botFactory = new BotFactory();
+           // var pokerDatabase = new PokerDatabase();
+           // Test lol = new Test(botFactory, pokerDatabase);
             IList<ICharacter> bots = new List<ICharacter>();
 
             //pokerDatabase.AddBot("Bot1", cards, 2, 2);
-            bots.Add(botFactory.CreateBot("Steven", cards, 2));
-            DialogResult lol;
-            lol = MessageBox.Show(bots[0].Name);
+           // bots.Add(botFactory.CreateBot("Steven", cards, 2));
+           // DialogResult lole;
+            //lole = MessageBox.Show(bots[0].Name);
+            
+            database.BotPlayers.Add(this.botFactory.CreateBot("go6o", cards, 10));
+            DialogResult huie = MessageBox.Show(database.BotPlayers[0].Name);
 
             //bools.Add(PFturn); bools.Add(B1Fturn); bools.Add(B2Fturn); bools.Add(B3Fturn); bools.Add(B4Fturn); bools.Add(B5Fturn);
             call = bigBlind;

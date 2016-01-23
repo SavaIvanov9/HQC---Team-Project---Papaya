@@ -31,3 +31,6 @@ C:\Users\Shadow\Desktop\loleh\HQC---Team-Project---Papaya\TeamProject\Poker\obj\
 C:\Users\Shadow\Desktop\loleh\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
 C:\Users\Shadow\Desktop\loleh\HQC---Team-Project---Papaya\TeamProject\Poker\bin\Debug\Poker.exe
 C:\Users\Shadow\Desktop\loleh\HQC---Team-Project---Papaya\TeamProject\Poker\bin\Debug\Poker.pdb
+C:\Users\vivacom.bg\Desktop\TeamProject\Poker\bin\Debug\Poker.exe.config
+C:\Users\vivacom.bg\Desktop\TeamProject\Poker\obj\Debug\Poker.exe
+C:\Users\vivacom.bg\Desktop\TeamProject\Poker\obj\Debug\Poker.pdb

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Poker.Enums;
 using Poker.Interfaces;
 using Poker.Models;
 using Poker.Players;
@@ -9,31 +8,52 @@ namespace Poker.Core
 {
     public class PokerDatabase : IPokerDatabase
     {
-        private IHumanFactory humanFactory;
         private IBotFactory botFactory;
-        private ICardFactory cardFactory;
-
+        private ICharacter character;
         public IList<ICharacter> botPlayers = new List<ICharacter>();
+        public IList<ICharacter> humanPlayers = new List<ICharacter>();
 
-        public IList<ICard> Deck { get; set; }
-
-        public IList<ICharacter> HumanPlayers { get; set; }
-
-        public IList<ICharacter> BotPlayers { get; set; }
-
-        public void AddBot(string name, IList<ICard> hand, int power, int chips)
+        public IList<ICard> deck = new List<ICard>();
+        
+        public IList<ICard> Deck
         {
-            BotPlayers.Add(botFactory.CreateBot(name, hand, power, chips));
+            get { return this.deck; }
+            set { this.deck = value; }
         }
 
-        public void AddHuman(string name, IList<ICard> hand, int power, int chips)
+        public IList<ICharacter> HumanPlayers
         {
-            HumanPlayers.Add(humanFactory.CreateHuman(name, hand, power, chips));
+            get { return this.humanPlayers; }
+            set { this.humanPlayers = value; }
         }
 
-        public void AddCard(int cardPower, CardType cardType)
+        public IList<ICharacter> BotPlayers
         {
-            Deck.Add(cardFactory.CreateCard(cardPower, cardType));
+            get { return this.botPlayers; }
+            set { this.botPlayers = value; }
         }
+
+
+        public void AddBot(ICharacter go6o)
+        {
+            BotPlayers.Add(go6o);
+        }
+
+        public void AddHuman(string name, IList<ICard> cards, int chips, int power)
+        {
+            HumanPlayers.Add(botFactory.CreateBot(name, cards, chips, power));
+        }
+
+        //public void AddBot(string name, IList<ICard> cards, int chips, int power)
+        //{
+        //    BotPlayers.Add(botFactory.CreateBot(name, cards, chips, power));
+        //}
+
+        //public void AddHuman(string name, IList<ICard> cards, int chips, int power)
+        //{
+        //    HumanPlayers.Add(botFactory.CreateBot(name, cards, chips, power));
+        //}
+
+
     }
 }

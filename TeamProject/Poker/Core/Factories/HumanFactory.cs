@@ -8,7 +8,7 @@ using Poker.Players;
 
 namespace Poker.Core.Factories
 {
-    public class HumanFactory:IHumanFactory
+    public class HumanFactory : IHumanFactory
     {
         public ICharacter CreateHuman(string name, IList<ICard> hand, int power, int chips)
         {
