@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Poker.Interfaces;
+using Poker.Models;
 
 namespace Poker.Table
 {
@@ -22,7 +23,7 @@ namespace Poker.Table
         {
         }
 
-        public void Shuffle(IList<Object> deck)
+        public void Shuffle(IList<ICard> deck)
         {
             var rand = new Random();
 

@@ -10,16 +10,16 @@ using Poker.Table;
 
 namespace Poker.Core
 {
-    public class Engine
+    public class Engine : IRunnable
     {
         private readonly IBotFactory botFactory = new BotFactory();
         private readonly IHumanFactory humanFactory = new HumanFactory();
         private readonly ICardFactory cardFactory = new CardFactory();
         private readonly IPokerDatabase database = new PokerDatabase();
         private readonly IDealer dealer = new Dealer();
-
+        
         private const bool IsRunning = true;
-        private int startingChips = 1000;
+        private int startingChips = 10000;
 
         public Engine(
             IBotFactory botFactory,
@@ -36,8 +36,8 @@ namespace Poker.Core
         public void Run()
         {
             FillDeck();
-            dealer.Shuffle();
-
+            dealer.Shuffle(database.Deck);
+            
             database.AddHuman(humanFactory.CreateHuman("Player", startingChips));
             database.AddBot(botFactory.CreateBot("Bot1", startingChips));
             database.AddBot(botFactory.CreateBot("Bot2", startingChips));
@@ -53,11 +53,11 @@ namespace Poker.Core
 
         private void FillDeck()
         {
-            for (int i = 2; i <= 14; i++)
+            for (int cardPower = 2; cardPower <= 14; cardPower++)
             {
                 foreach (CardType cardType in Enum.GetValues(typeof (CardType)))
                 {
-                    database.AddCard(cardFactory.CreateCard(i, cardType));
+                    database.AddCard(cardFactory.CreateCard(cardPower, cardType));
                 }
             }
         }

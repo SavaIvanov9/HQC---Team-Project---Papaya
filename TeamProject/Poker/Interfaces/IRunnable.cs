@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Poker.Interfaces
 {
-    interface IRunnable
+    public interface IRunnable
     {
+        void Run();
     }
 }

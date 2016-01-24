@@ -80,6 +80,7 @@
     <Compile Include="Interfaces\IHumanFactory.cs" />
     <Compile Include="Interfaces\IPokerDatabase.cs" />
     <Compile Include="Interfaces\IRaiseable.cs" />
+    <Compile Include="Interfaces\IRunnable.cs" />
     <Compile Include="Interfaces\IWinnerSetter.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Players\Bot.cs" />

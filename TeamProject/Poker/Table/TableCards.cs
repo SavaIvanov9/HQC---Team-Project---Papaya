@@ -11,7 +11,5 @@ namespace Poker.Table
     public static class TableCards
     {
         private static Dictionary<string, List<ICard>> tableCards;
-
-
     }
 }
