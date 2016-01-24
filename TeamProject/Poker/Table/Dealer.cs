@@ -22,8 +22,17 @@ namespace Poker.Table
         {
         }
 
-        public void Shuffle()
+        public void Shuffle(IList<Object> deck)
         {
+            var rand = new Random();
+
+            for (int i = deck.Count - 1; i > 0; i--)
+            {
+                int n = rand.Next(i + 1);
+                var temp = deck[i];
+                deck[i] = deck[n];
+                deck[n] = temp;
+            }
         }
     }
 }

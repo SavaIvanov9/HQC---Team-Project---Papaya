@@ -13,7 +13,9 @@ namespace Poker.Interfaces
         IList<ICard> Deck { get; set; }
         IList<ICharacter> HumanPlayers { get; set; }
         IList<ICharacter> BotPlayers { get; set; }
-        //void AddBot(string name, IList<ICard> hand, int chips, int power);
-        void AddBot(ICharacter go6o);
+        
+        void AddBot(ICharacter bot);
+        void AddHuman(ICharacter human);
+        void AddCard(ICard card);
     }
 }

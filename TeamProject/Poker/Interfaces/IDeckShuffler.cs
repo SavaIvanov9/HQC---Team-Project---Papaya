@@ -8,6 +8,6 @@ namespace Poker.Interfaces
 {
     public interface IDeckShuffler
     {
-        void Shuffle();
+        void Shuffle(IList<Object> deck);
     }
 }

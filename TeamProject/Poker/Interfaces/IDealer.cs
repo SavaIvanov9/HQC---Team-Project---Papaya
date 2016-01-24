@@ -1,7 +1,7 @@
 ﻿
 namespace Poker.Interfaces
 {
-    public interface IDealer: IDeckShuffler,ICardDealable,IHandPowerChecker,IWinnerSetter
+    public interface IDealer: IDeckShuffler, ICardDealable, IHandPowerChecker, IWinnerSetter
     {
     }
 }

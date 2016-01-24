@@ -11,8 +11,8 @@ namespace Poker.Players
     public class Human : Character
     {
 
-        public Human(string name, IList<ICard> hand, int power,int chips)
-            :base(name, hand, power,chips)
+        public Human(string name, int chips, IList<ICard> hand = null, int power = 0)
+            :base(name, chips, hand, power)
         {
 
         }

@@ -11,8 +11,8 @@ namespace Poker.Players
     public class Bot : Character, IComputerControlled
     {
 
-        public Bot(string name, IList<ICard> cards,int chips, int power = 0) 
-            :base(name, cards, chips, power)
+        public Bot(string name, int chips, IList<ICard> hand, int power = 0) 
+            :base(name, chips, hand, power)
         {
             
         }
@@ -39,7 +39,7 @@ namespace Poker.Players
 
         public void MakeDecision()
         {
-            throw new NotImplementedException();
+          
         }
 
         public override void AllIn()

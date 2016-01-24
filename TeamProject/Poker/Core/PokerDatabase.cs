@@ -12,9 +12,8 @@ namespace Poker.Core
         private ICharacter character;
         public IList<ICharacter> botPlayers = new List<ICharacter>();
         public IList<ICharacter> humanPlayers = new List<ICharacter>();
-
         public IList<ICard> deck = new List<ICard>();
-        
+
         public IList<ICard> Deck
         {
             get { return this.deck; }
@@ -34,26 +33,19 @@ namespace Poker.Core
         }
 
 
-        public void AddBot(ICharacter go6o)
+        public void AddBot(ICharacter bot)
         {
-            BotPlayers.Add(go6o);
+            BotPlayers.Add(bot);
         }
 
-        public void AddHuman(string name, IList<ICard> cards, int chips, int power)
+        public void AddHuman(ICharacter human)
         {
-            HumanPlayers.Add(botFactory.CreateBot(name, cards, chips, power));
+            HumanPlayers.Add(human);
         }
 
-        //public void AddBot(string name, IList<ICard> cards, int chips, int power)
-        //{
-        //    BotPlayers.Add(botFactory.CreateBot(name, cards, chips, power));
-        //}
-
-        //public void AddHuman(string name, IList<ICard> cards, int chips, int power)
-        //{
-        //    HumanPlayers.Add(botFactory.CreateBot(name, cards, chips, power));
-        //}
-
-
+        public void AddCard(ICard card)
+        {
+            Deck.Add(card);
+        }
     }
 }
