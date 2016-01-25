@@ -12,9 +12,9 @@ namespace Poker.Core.Factories
 {
     public class BotFactory : IBotFactory
     {
-        public ICharacter CreateBot(string name, int chips, IList<ICard> hand = null, int power = 0)
+        public ICharacter CreateBot(string name, int chips, int power = 0)
         {
-            ICharacter bot = new Bot(name, chips, hand, power);
+            ICharacter bot = new Bot(name, chips, power);
             
             return bot;
         }

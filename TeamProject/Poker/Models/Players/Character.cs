@@ -17,9 +17,8 @@ namespace Poker.Players
         private IList<ICard> hand;
         private int chips;
     
-        protected Character(string name, int chips, IList<ICard> hand = null, int power = 0)
+        protected Character(string name, int chips, int power = 0)
         {
-            
             this.Name = name;
             this.Hand = new List<ICard>();
             this.Power = power;
@@ -38,10 +37,7 @@ namespace Poker.Players
             {
                 return this.hand;
             }
-            set
-            {
-                value = this.hand;
-            }
+            set { this.hand = value; }
         }
 
         public abstract void Check();

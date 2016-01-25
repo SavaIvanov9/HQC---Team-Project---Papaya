@@ -11,10 +11,10 @@ namespace Poker.Players
     public class Bot : Character, IComputerControlled
     {
 
-        public Bot(string name, int chips, IList<ICard> hand, int power = 0) 
-            :base(name, chips, hand, power)
+        public Bot(string name, int chips, int power = 0) 
+            :base(name, chips, power)
         {
-            
+            this.Hand = new List<ICard>();            
         }
         
         public override void Check()
