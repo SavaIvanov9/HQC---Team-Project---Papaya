@@ -89,7 +89,6 @@
     <Compile Include="Launcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Table\Dealer.cs" />
-    <Compile Include="Table\TableCards.cs" />
     <Compile Include="Type.cs" />
     <EmbeddedResource Include="AddChips.resx">
       <DependentUpon>AddChips.cs</DependentUpon>
@@ -107,6 +106,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
