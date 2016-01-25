@@ -16,6 +16,7 @@ using Poker.Core.Factories;
 using Poker.Enums;
 using Poker.Interfaces;
 using Poker.Models;
+using Poker.Table;
 
 namespace Poker
 {
@@ -24,13 +25,11 @@ namespace Poker
     {
         #region Variables
 
-        private readonly IBotFactory botFactory = new BotFactory();
-        private readonly IHumanFactory humanFactory = new HumanFactory();
-        private readonly ICardFactory cardFactory = new CardFactory();
-        private readonly IPokerDatabase database = new PokerDatabase();
-
-       
-
+        //private readonly IBotFactory botFactory = new BotFactory();
+        //private readonly IHumanFactory humanFactory = new HumanFactory();
+        //private readonly ICardFactory cardFactory = new CardFactory();
+        //private readonly IPokerDatabase database = new PokerDatabase();
+        
         ProgressBar turnTime = new ProgressBar();
         public int Nm; //TODO: refactor
         Panel playerPanel = new Panel();
@@ -142,6 +141,7 @@ namespace Poker
                     "Assets\\Cards\\12.png",
                     "Assets\\Cards\\8.png","Assets\\Cards\\18.png",
                     "Assets\\Cards\\15.png","Assets\\Cards\\27.png"};*/
+
         int[] Reserve = new int[17];
         Image[] Deck = new Image[52];
         PictureBox[] Holder = new PictureBox[52];
@@ -158,21 +158,23 @@ namespace Poker
 
         public Form1()
         {
-            IList<ICard> cards = new List<ICard>();
-            cards.Add(new Card(2, CardType.Clubs));
-           // var botFactory = new BotFactory();
-           // var pokerDatabase = new PokerDatabase();
-           // Test lol = new Test(botFactory, pokerDatabase);
-            IList<ICharacter> bots = new List<ICharacter>();
+            var botFactory = new BotFactory();
+            var database = new PokerDatabase();
+            var humanFactory = new HumanFactory();
+            var cardFactory = new CardFactory();
+            var dealer = new Dealer();
 
-            //pokerDatabase.AddBot("Bot1", cards, 2, 2);
+            var engine = new Engine(botFactory, humanFactory, cardFactory, database, dealer);
+            engine.Run();
+
+           //pokerDatabase.AddBot("Bot1", cards, 2, 2);
            // bots.Add(botFactory.CreateBot("Steven", cards, 2));
            // DialogResult lole;
             //lole = MessageBox.Show(bots[0].Name);
             
-            database.BotPlayers.Add(this.botFactory.CreateBot("go6o", cards, 10));
+            //database.BotPlayers.Add(this.botFactory.CreateBot("go6o", 10));
             DialogResult huie = MessageBox.Show(database.BotPlayers[0].Name);
-
+            DialogResult hui = MessageBox.Show(database.HumanPlayers[0].Name);
             //bools.Add(PFturn); bools.Add(B1Fturn); bools.Add(B2Fturn); bools.Add(B3Fturn); bools.Add(B4Fturn); bools.Add(B5Fturn);
             call = bigBlind;
             MaximizeBox = false;

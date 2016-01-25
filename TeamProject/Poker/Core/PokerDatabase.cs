@@ -10,10 +10,10 @@ namespace Poker.Core
     {
         private IBotFactory botFactory;
         private ICharacter character;
-        public IList<ICharacter> botPlayers = new List<ICharacter>();
-        public IList<ICharacter> humanPlayers = new List<ICharacter>();
-        public IList<ICard> deck = new List<ICard>();
-
+        private IList<ICharacter> botPlayers = new List<ICharacter>();
+        private IList<ICharacter> humanPlayers = new List<ICharacter>();
+        private IList<ICard> deck = new List<ICard>();
+       
         public IList<ICard> Deck
         {
             get { return this.deck; }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Poker.Core.Factories;
 using Poker.Enums;
 using Poker.Interfaces;
@@ -12,12 +14,13 @@ namespace Poker.Core
 {
     public class Engine : IRunnable
     {
-        private readonly IBotFactory botFactory = new BotFactory();
-        private readonly IHumanFactory humanFactory = new HumanFactory();
-        private readonly ICardFactory cardFactory = new CardFactory();
-        private readonly IPokerDatabase database = new PokerDatabase();
-        private readonly IDealer dealer = new Dealer();
-        
+        private readonly IBotFactory botFactory;
+        private readonly IHumanFactory humanFactory;
+        private readonly ICardFactory cardFactory;
+        private readonly IPokerDatabase database;
+        private readonly IDealer dealer;
+     
+
         private const bool IsRunning = true;
         private int startingChips = 10000;
 
@@ -25,12 +28,15 @@ namespace Poker.Core
             IBotFactory botFactory,
             IHumanFactory humanFactory,
             ICardFactory cardFactory,
-            IPokerDatabase database)
+            IPokerDatabase database,
+            IDealer dealer)
         {
             this.botFactory = botFactory;
             this.humanFactory = humanFactory;
             this.cardFactory = cardFactory;
             this.database = database;
+            this.dealer = dealer;
+            
         }
 
         public void Run()
@@ -45,10 +51,13 @@ namespace Poker.Core
             database.AddBot(botFactory.CreateBot("Bot4", startingChips));
             database.AddBot(botFactory.CreateBot("Bot5", startingChips));
 
-            while (IsRunning)
-            {
+            database.BotPlayers.Add(this.botFactory.CreateBot("go6o", 10));
+            //DialogResult huie = MessageBox.Show(database.BotPlayers[0].Name);
 
-            }
+            //while (IsRunning)
+            //{
+
+            //}
         }
 
         private void FillDeck()
