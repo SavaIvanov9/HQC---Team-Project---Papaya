@@ -13,6 +13,7 @@ namespace Poker.Core
         private IList<ICharacter> botPlayers = new List<ICharacter>();
         private IList<ICharacter> humanPlayers = new List<ICharacter>();
         private IList<ICard> deck = new List<ICard>();
+        private IList<ICard> tableCards = new List<ICard>();  
        
         public IList<ICard> Deck
         {
@@ -32,7 +33,11 @@ namespace Poker.Core
             set { this.botPlayers = value; }
         }
 
-
+        public IList<ICard> TableCards
+        {
+            get { return this.tableCards; }
+            set { this.tableCards = value; }
+        }
         public void AddBot(ICharacter bot)
         {
             BotPlayers.Add(bot);

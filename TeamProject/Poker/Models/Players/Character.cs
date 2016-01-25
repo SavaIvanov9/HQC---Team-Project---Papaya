@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Poker.Interfaces;
 using Poker.Models;
 
@@ -17,8 +19,9 @@ namespace Poker.Players
     
         protected Character(string name, int chips, IList<ICard> hand = null, int power = 0)
         {
+            
             this.Name = name;
-            this.Hand = hand;
+            this.Hand = new List<ICard>();
             this.Power = power;
             this.Chips = chips;
         }
@@ -29,7 +32,17 @@ namespace Poker.Players
 
         public int Power { get; set; }
 
-        public IList<ICard> Hand { get; set; }
+        public IList<ICard> Hand
+        {
+            get
+            {
+                return this.hand;
+            }
+            set
+            {
+                value = this.hand;
+            }
+        }
 
         public abstract void Check();
 

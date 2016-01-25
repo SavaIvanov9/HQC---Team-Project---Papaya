@@ -51,8 +51,10 @@ namespace Poker.Core
             database.AddBot(botFactory.CreateBot("Bot4", startingChips));
             database.AddBot(botFactory.CreateBot("Bot5", startingChips));
 
+            dealer.DealCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
+            
             database.BotPlayers.Add(this.botFactory.CreateBot("go6o", 10));
-            //DialogResult huie = MessageBox.Show(database.BotPlayers[0].Name);
+            DialogResult huie = MessageBox.Show(database.BotPlayers[0].Name);
 
             //while (IsRunning)
             //{

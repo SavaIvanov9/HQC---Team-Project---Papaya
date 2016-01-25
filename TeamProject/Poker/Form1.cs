@@ -173,8 +173,10 @@ namespace Poker
             //lole = MessageBox.Show(bots[0].Name);
             
             //database.BotPlayers.Add(this.botFactory.CreateBot("go6o", 10));
-            DialogResult huie = MessageBox.Show(database.BotPlayers[0].Name);
-            DialogResult hui = MessageBox.Show(database.HumanPlayers[0].Name);
+            //DialogResult huie = MessageBox.Show(database.BotPlayers[0].Name);
+            //DialogResult hui = MessageBox.Show(database.HumanPlayers[0].Name);
+
+
             //bools.Add(PFturn); bools.Add(B1Fturn); bools.Add(B2Fturn); bools.Add(B3Fturn); bools.Add(B4Fturn); bools.Add(B5Fturn);
             call = bigBlind;
             MaximizeBox = false;

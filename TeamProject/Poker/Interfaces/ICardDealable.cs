@@ -8,6 +8,6 @@ namespace Poker.Interfaces
 {
     public interface ICardDealable
     {
-        void DealCards();
+        void DealCards(IList<ICard> deck, IList<ICharacter> humans, IList<ICharacter> bots, IList<ICard> tableCards);
     }
 }
