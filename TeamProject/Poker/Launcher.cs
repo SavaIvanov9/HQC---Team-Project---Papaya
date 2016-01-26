@@ -21,14 +21,16 @@ namespace Poker
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var botFactory = new BotFactory();
-            var database = new PokerDatabase();
-            var humanFactory = new HumanFactory();
-            var cardFactory = new CardFactory();
-            var dealer = new Dealer();
+            //var botFactory = new BotFactory();
+            //var database = new PokerDatabase();
+            //var humanFactory = new HumanFactory();
+            //var cardFactory = new CardFactory();
+            //var dealer = new Dealer();
 
-            var engine = new Engine(botFactory, humanFactory, cardFactory, database, dealer);
-            engine.Run();
+            //var engine = new Engine(botFactory, humanFactory, cardFactory, database, dealer);
+            //engine.Run();
+
+            Engine.Instance.Run();
 
             //var botFactory = new BotFactory();
             //var database = new PokerDatabase();

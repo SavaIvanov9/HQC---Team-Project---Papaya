@@ -15,30 +15,47 @@ namespace Poker.Core
 {
     public class Engine : IRunnable
     {
-        private readonly IBotFactory botFactory;
-        private readonly IHumanFactory humanFactory;
-        private readonly ICardFactory cardFactory;
-        private readonly IPokerDatabase database;
-        private readonly IDealer dealer;
+        private readonly IBotFactory botFactory = new BotFactory();
+        private readonly IHumanFactory humanFactory = new HumanFactory();
+        private readonly ICardFactory cardFactory = new CardFactory();
+        private readonly IPokerDatabase database = new PokerDatabase();
+        private readonly IDealer dealer = new Dealer();
      
 
         private const bool IsRunning = true;
         private int startingChips = 10000;
 
-        public Engine(
-            IBotFactory botFactory,
-            IHumanFactory humanFactory,
-            ICardFactory cardFactory,
-            IPokerDatabase database,
-            IDealer dealer)
+        private static Engine instance;
+
+        private Engine() { }
+
+        public static Engine Instance
         {
-            this.botFactory = botFactory;
-            this.humanFactory = humanFactory;
-            this.cardFactory = cardFactory;
-            this.database = database;
-            this.dealer = dealer;
-            
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Engine();
+                }
+
+                return instance;
+            }
         }
+
+        //public Engine(
+        //    IBotFactory botFactory,
+        //    IHumanFactory humanFactory,
+        //    ICardFactory cardFactory,
+        //    IPokerDatabase database,
+        //    IDealer dealer)
+        //{
+        //    this.botFactory = botFactory;
+        //    this.humanFactory = humanFactory;
+        //    this.cardFactory = cardFactory;
+        //    this.database = database;
+        //    this.dealer = dealer;
+            
+        //}
 
         private static void ThreadStart()
         {
