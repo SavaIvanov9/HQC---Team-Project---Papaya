@@ -17,6 +17,15 @@ namespace Poker.Players
         private IList<ICard> hand;
         private int chips;
         private bool isOnTurn = false;
+        private bool isFolded = false;
+
+        private Dictionary<string, bool> action = new Dictionary<string, bool>()
+        {
+            {"check", false },
+            {"fold", false },
+            {"rise", false },
+            {"call", false }
+        }; 
 
         protected Character(string name, int chips, int power = 0)
         {
@@ -32,6 +41,12 @@ namespace Poker.Players
             set { this.isOnTurn = value; }
         }
 
+        public bool IsFolded
+        {
+            get { return this.isFolded; }
+            set { this.isFolded = value; }
+        }
+
         public int Chips { get; set; }
 
         public string Name { get; set; }
@@ -40,10 +55,7 @@ namespace Poker.Players
 
         public IList<ICard> Hand
         {
-            get
-            {
-                return this.hand;
-            }
+            get { return this.hand; }
             set { this.hand = value; }
         }
 
@@ -72,9 +84,10 @@ namespace Poker.Players
             
         }
 
-        public virtual void MakeDecision()
+        public virtual string MakeDecision()
         {
-            
+            string hui = null;
+            return hui;
         }
     }
 }

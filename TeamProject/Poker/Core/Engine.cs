@@ -25,7 +25,9 @@ namespace Poker.Core
         public static Form1 form;
         
         public bool isRunning = true;
+
         private int startingChips = 10000;
+        private string currDecision;
 
         private static Engine instance;
 
@@ -93,6 +95,9 @@ namespace Poker.Core
             while (isRunning)
             {
                 dealer.Shuffle(database.Deck);
+                dealer.DealCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
+
+                //players in врътката
                 foreach (ICharacter human in database.HumanPlayers)
                 {
                     database.CurrPlayers.Add(human);
@@ -101,50 +106,162 @@ namespace Poker.Core
                 {
                     database.CurrPlayers.Add(bot);
                 }
-                dealer.DealCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
+               
+                //stages of врътката
                 if (database.Stages["preflop"])
                 {
-                    //MessageBox.Show("it works!");
-                    foreach (ICharacter player in database.CurrPlayers)
-                    {
-                        if (player.Chips <= 0)
-                        {
-                            database.CurrPlayers.Remove(player);
-                        }
+                    ////MessageBox.Show("it works!");
+                    //foreach (ICharacter player in database.CurrPlayers)
+                    //{
+                    //    if (player.Chips <= 0)
+                    //    {
+                    //        database.CurrPlayers.Remove(player);
+                    //    }
 
-                        if (player is Human)
+                    //    if (player is Human)
+                    //    {
+                    //        HumanDecision();
+                    //    }
+                    //    else if (player is Bot)
+                    //    {
+                    //        player.MakeDecision();
+                    //    }
+                    //}
+
+                    //требе се добави кол, ако предния е рейзнал
+
+                    for (int i = 0; i < database.CurrPlayers.Count; i++)
+                    {
+                        if (database.CurrPlayers[i] is Human && database.CurrPlayers[i].IsFolded == false)
                         {
                             HumanDecision();
                         }
-                        else if (player is Bot)
+
+                        if (database.CurrPlayers[i] is Bot && database.CurrPlayers[i].IsFolded == false)
                         {
-                            player.MakeDecision();
+                           currDecision = database.CurrPlayers[i].MakeDecision();
+                        }
+                        
+                        if (i == database.CurrPlayers.Count - 1 && currDecision == "raise")
+                        {
+                            i = 0;
+                        }
+                    }
+
+                    foreach (ICharacter player in database.CurrPlayers)
+                    {
+                        if (player.IsFolded)
+                        {
+                            database.CurrPlayers.Remove(player);
                         }
                     }
 
                     database.Stages["preflop"] = false;
                     database.Stages["flop"] = true;
                 }
+
                 if (database.Stages["flop"])
                 {
+                    for (int i = 0; i < database.CurrPlayers.Count; i++)
+                    {
+                        if (database.CurrPlayers[i] is Human && database.CurrPlayers[i].IsFolded == false)
+                        {
+                            HumanDecision();
+                        }
+
+                        if (database.CurrPlayers[i] is Bot && database.CurrPlayers[i].IsFolded == false)
+                        {
+                            currDecision = database.CurrPlayers[i].MakeDecision();
+                        }
+
+                        if (i == database.CurrPlayers.Count - 1 && currDecision == "raise")
+                        {
+                            i = 0;
+                        }
+                    }
+
+                    foreach (ICharacter player in database.CurrPlayers)
+                    {
+                        if (player.IsFolded)
+                        {
+                            database.CurrPlayers.Remove(player);
+                        }
+                    }
+
                     database.Stages["flop"] = false;
                     database.Stages["turn"] = true;
                 }
+
                 if (database.Stages["turn"])
                 {
+                    for (int i = 0; i < database.CurrPlayers.Count; i++)
+                    {
+                        if (database.CurrPlayers[i] is Human && database.CurrPlayers[i].IsFolded == false)
+                        {
+                            HumanDecision();
+                        }
+
+                        if (database.CurrPlayers[i] is Bot && database.CurrPlayers[i].IsFolded == false)
+                        {
+                            currDecision = database.CurrPlayers[i].MakeDecision();
+                        }
+
+                        if (i == database.CurrPlayers.Count - 1 && currDecision == "raise")
+                        {
+                            i = 0;
+                        }
+                    }
+
+                    foreach (ICharacter player in database.CurrPlayers)
+                    {
+                        if (player.IsFolded)
+                        {
+                            database.CurrPlayers.Remove(player);
+                        }
+                    }
+
                     database.Stages["turn"] = false;
                     database.Stages["river"] = true;
                 }
+
                 if (database.Stages["river"])
                 {
+                    for (int i = 0; i < database.CurrPlayers.Count; i++)
+                    {
+                        if (database.CurrPlayers[i] is Human && database.CurrPlayers[i].IsFolded == false)
+                        {
+                            HumanDecision();
+                        }
+
+                        if (database.CurrPlayers[i] is Bot && database.CurrPlayers[i].IsFolded == false)
+                        {
+                            currDecision = database.CurrPlayers[i].MakeDecision();
+                        }
+
+                        if (i == database.CurrPlayers.Count - 1 && currDecision == "raise")
+                        {
+                            i = 0;
+                        }
+                    }
+
+                    foreach (ICharacter player in database.CurrPlayers)
+                    {
+                        if (player.IsFolded)
+                        {
+                            database.CurrPlayers.Remove(player);
+                        }
+                    }
+
                     database.Stages["river"] = false;
                     database.Stages["end"] = true;
                 }
+
                 if (database.Stages["end"])
                 {
                     database.Stages["end"] = false;
                     database.Stages["preflop"] = true;
                 }
+
                 isRunning = false;
             }
         }

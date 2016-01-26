@@ -13,6 +13,7 @@ namespace Poker.Interfaces
         IList<ICard> Hand { get; set; }
         int Power { get; set; }
         bool IsOnTurn { get; set; }
-        void MakeDecision();
+        bool IsFolded { get; set; }
+        string MakeDecision();
     }
 }

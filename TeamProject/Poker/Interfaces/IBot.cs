@@ -8,6 +8,6 @@ namespace Poker.Interfaces
 {
     public interface IBot
     {
-        void MakeDecision();
+        string MakeDecision();
     }
 }

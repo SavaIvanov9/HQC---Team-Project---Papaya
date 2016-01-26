@@ -18,9 +18,10 @@ namespace Poker.Players
         }
         
 
-        public override void MakeDecision()
+        public override string MakeDecision()
         {
-            
+            string decision = null;
+            return decision;
         }
 
     }
