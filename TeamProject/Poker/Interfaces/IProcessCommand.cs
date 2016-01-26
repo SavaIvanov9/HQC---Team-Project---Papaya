@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker.Interfaces
 {
-    public interface IPlayable : ICallable, IFoldable, IRaiseable, ICheckable, IAllIn
+    public interface IProcessCommand : IFoldable, ICallable, IAllIn, IRaiseable
     {
-        int Chips { get; set; }
-        
     }
 }

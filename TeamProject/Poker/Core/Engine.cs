@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Poker.Core.Commands;
 using Poker.Core.Factories;
 using Poker.Enums;
 using Poker.Interfaces;
@@ -21,6 +22,7 @@ namespace Poker.Core
         private readonly ICardFactory cardFactory = new CardFactory();
         private readonly IPokerDatabase database = new PokerDatabase();
         private readonly IDealer dealer = new Dealer();
+        private readonly IProcessCommand commandProcessor = new CommandProcessor();
 
         public static Form1 form;
         
@@ -68,7 +70,6 @@ namespace Poker.Core
 
         public void Run()
         {
-            
             var thread = new Thread(ThreadStart);
             thread.TrySetApartmentState(ApartmentState.STA);
             thread.Start();

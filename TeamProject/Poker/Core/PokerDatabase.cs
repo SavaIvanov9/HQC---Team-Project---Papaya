@@ -8,12 +8,14 @@ namespace Poker.Core
 {
     public class PokerDatabase : IPokerDatabase
     {
-        private IBotFactory botFactory;
-        private ICharacter character;
+        //private IBotFactory botFactory;
+        //private ICharacter character;
+
         private IList<ICharacter> botPlayers = new List<ICharacter>();
         private IList<ICharacter> humanPlayers = new List<ICharacter>();
         private IList<ICard> deck = new List<ICard>();
         private IList<ICard> tableCards = new List<ICard>();
+        private ulong pot = 0;
         private Dictionary<string, bool> stages = new Dictionary<string, bool>()
         {
             {"preflop", true },
@@ -22,10 +24,9 @@ namespace Poker.Core
             {"river", false },
             {"end", false }
         };  
+
         private IList<ICharacter> currPlayers = new List<ICharacter>();
          
-        private ulong pot = 0;
-
         public ulong Pot { get; set; }
 
         public IList<ICharacter> CurrPlayers

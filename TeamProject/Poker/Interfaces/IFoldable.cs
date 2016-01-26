@@ -8,6 +8,6 @@ namespace Poker.Interfaces
 {
     public interface IFoldable
     {
-        void Fold(); 
+        void Fold(IPokerDatabase database, ICharacter player); 
     }
 }

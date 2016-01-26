@@ -8,6 +8,6 @@ namespace Poker.Interfaces
 {
     public interface IRaiseable
     {
-        void Raise();
+        void Raise(IPokerDatabase database, ICharacter player, int raiseAmount);
     }
 }

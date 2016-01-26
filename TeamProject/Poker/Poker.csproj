@@ -48,6 +48,8 @@
     <Compile Include="AddChips.Designer.cs">
       <DependentUpon>AddChips.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\Commands\CommandProcessor.cs" />
+    <Compile Include="Core\Commands\CommandsConstants.cs" />
     <Compile Include="Core\Engine.cs" />
     <Compile Include="Core\Factories\BotFactory.cs" />
     <Compile Include="Core\Factories\CardFactory.cs" />
@@ -72,12 +74,13 @@
     <Compile Include="Interfaces\ICharacter.cs" />
     <Compile Include="Interfaces\IDeckFillable.cs" />
     <Compile Include="Interfaces\IDeckShuffler.cs" />
-    <Compile Include="Interfaces\IEverythingGivable.cs" />
+    <Compile Include="Interfaces\IAllIn.cs" />
     <Compile Include="Interfaces\IFoldable.cs" />
     <Compile Include="Interfaces\IHandPowerChecker.cs" />
     <Compile Include="Interfaces\IPlayable.cs" />
     <Compile Include="Interfaces\IHumanFactory.cs" />
     <Compile Include="Interfaces\IPokerDatabase.cs" />
+    <Compile Include="Interfaces\IProcessCommand.cs" />
     <Compile Include="Interfaces\IRaiseable.cs" />
     <Compile Include="Interfaces\IRunnable.cs" />
     <Compile Include="Interfaces\IWinnerSetter.cs" />

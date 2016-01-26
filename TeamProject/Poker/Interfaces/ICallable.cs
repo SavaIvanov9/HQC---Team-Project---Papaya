@@ -8,6 +8,6 @@ namespace Poker.Interfaces
 {
     public interface ICallable
     {
-        void Call();
+        void Call(IPokerDatabase database, ICharacter player, int raiseAmount);
     }
 }

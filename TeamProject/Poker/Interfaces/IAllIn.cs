@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Poker.Interfaces
 {
-    public interface IEverythingGivable
+    public interface IAllIn
     {
-        void AllIn();
+        void AllIn(IPokerDatabase database, ICharacter player);
     }
 }
