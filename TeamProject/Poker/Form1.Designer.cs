@@ -55,7 +55,7 @@
             this.b2Status = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxRaise = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
+            //this.SuspendLayout();
             // 
             // bFold
             // 
@@ -353,7 +353,7 @@
             this.DoubleBuffered = true;
             this.Name = "Form1";
             this.Text = "GLS Texas Poker";
-            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.Layout_Change);
+            //this.Layout += new System.Windows.Forms.LayoutEventHandler(this.Layout_Change);
             this.ResumeLayout(false);
             this.PerformLayout();
 

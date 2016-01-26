@@ -11,6 +11,7 @@ namespace Poker.Table
 {
     public class Dealer : IDealer
     {
+
         public void CheckHandPower()
         {
            
