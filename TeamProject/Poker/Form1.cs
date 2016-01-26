@@ -158,14 +158,9 @@ namespace Poker
 
         public Form1()
         {
-            var botFactory = new BotFactory();
-            var database = new PokerDatabase();
-            var humanFactory = new HumanFactory();
-            var cardFactory = new CardFactory();
-            var dealer = new Dealer();
+            
 
-            var engine = new Engine(botFactory, humanFactory, cardFactory, database, dealer);
-            engine.Run();
+            
 
            //pokerDatabase.AddBot("Bot1", cards, 2, 2);
            // bots.Add(botFactory.CreateBot("Steven", cards, 2));

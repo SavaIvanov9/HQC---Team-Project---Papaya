@@ -53,15 +53,17 @@ namespace Poker.Table
 
         public void Shuffle(IList<ICard> deck)
         {
-            var rand = new Random();
+            var randomNumberGenerator = new Random();
 
-            for (int i = deck.Count - 1; i > 0; i--)
+            var shuffledDeck = deck;
+            for (var currentCardIndex = 0; currentCardIndex < 52; currentCardIndex++)
             {
-                int n = rand.Next(i + 1);
-                var temp = deck[i];
-                deck[i] = deck[n];
-                deck[n] = temp;
+                int nextPositionInDeck = currentCardIndex + randomNumberGenerator.Next(0, 52 - currentCardIndex);
+                var movedCard = shuffledDeck[currentCardIndex];
+                shuffledDeck[currentCardIndex] = shuffledDeck[nextPositionInDeck];
+                shuffledDeck[nextPositionInDeck] = movedCard;
             }
+            deck = shuffledDeck;
         }
     }
 }

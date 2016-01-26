@@ -44,3 +44,13 @@ C:\Users\doan\Desktop\SoftUniStudent\project\HQC---Team-Project---Papaya\TeamPro
 C:\Users\doan\Desktop\SoftUniStudent\project\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.Form1.resources
 C:\Users\doan\Desktop\SoftUniStudent\project\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.Properties.Resources.resources
 C:\Users\doan\Desktop\SoftUniStudent\project\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache
+C:\Users\Shadow\Desktop\New folder (9)\HQC---Team-Project---Papaya\TeamProject\Poker\bin\Debug\Poker.exe.config
+C:\Users\Shadow\Desktop\New folder (9)\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.exe
+C:\Users\Shadow\Desktop\New folder (9)\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.pdb
+C:\Users\Shadow\Desktop\New folder (9)\HQC---Team-Project---Papaya\TeamProject\Poker\bin\Debug\Poker.exe
+C:\Users\Shadow\Desktop\New folder (9)\HQC---Team-Project---Papaya\TeamProject\Poker\bin\Debug\Poker.pdb
+C:\Users\Shadow\Desktop\New folder (9)\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.csprojResolveAssemblyReference.cache
+C:\Users\Shadow\Desktop\New folder (9)\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.AddChips.resources
+C:\Users\Shadow\Desktop\New folder (9)\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.Form1.resources
+C:\Users\Shadow\Desktop\New folder (9)\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.Properties.Resources.resources
+C:\Users\Shadow\Desktop\New folder (9)\HQC---Team-Project---Papaya\TeamProject\Poker\obj\Debug\Poker.csproj.GenerateResource.Cache

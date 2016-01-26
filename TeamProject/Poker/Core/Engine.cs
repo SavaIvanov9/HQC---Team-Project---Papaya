@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Poker.Core.Factories;
@@ -39,8 +40,17 @@ namespace Poker.Core
             
         }
 
+        private static void ThreadStart()
+        {
+            Application.Run(new Form1()); // <-- form started on its own UI thread
+        }
+
         public void Run()
         {
+            var thread = new Thread(ThreadStart);
+            thread.TrySetApartmentState(ApartmentState.STA);
+            thread.Start();
+
             FillDeck();
             dealer.Shuffle(database.Deck);
             

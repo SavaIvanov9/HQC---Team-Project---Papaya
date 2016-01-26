@@ -17,34 +17,5 @@ namespace Poker.Players
             this.Hand = new List<ICard>();
         }
 
-        public override void Check()
-        {
-            
-        }
-
-        public override void Fold()
-        {
-            
-        }
-
-        public override void Call()
-        {
-            
-        }
-
-        public override void Raise()
-        {
-            
-        }
-
-        public override void AllIn()
-        {
-            
-        }
-
-        public override string GetName()
-        {
-            return null;
-        }
     }
 }

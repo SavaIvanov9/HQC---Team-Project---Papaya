@@ -40,16 +40,29 @@ namespace Poker.Players
             set { this.hand = value; }
         }
 
-        public abstract void Check();
+        public virtual void Check()
+        {
+            
+        }
 
-        public abstract void Raise();
+        public virtual void Raise()
+        {
+            
+        }
 
-        public abstract void Call();
+        public virtual void Call()
+        {
+            
+        }
 
-        public abstract void Fold();
+        public virtual void Fold()
+        {
+            
+        }
 
-        public abstract void AllIn();
-
-        public abstract string GetName();
+        public virtual void AllIn()
+        {
+            
+        }
     }
 }
