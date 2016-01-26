@@ -8,7 +8,7 @@ using Poker.Models;
 
 namespace Poker.Players
 {
-    public class Bot : Character, IComputerControlled
+    public class Bot : Character, IBot
     {
 
         public Bot(string name, int chips, int power = 0) 
@@ -18,9 +18,9 @@ namespace Poker.Players
         }
         
 
-        public void MakeDecision()
+        public override void MakeDecision()
         {
-          
+            
         }
 
     }

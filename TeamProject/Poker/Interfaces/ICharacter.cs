@@ -12,5 +12,7 @@ namespace Poker.Interfaces
         int Chips { get; set; }
         IList<ICard> Hand { get; set; }
         int Power { get; set; }
+        bool IsOnTurn { get; set; }
+        void MakeDecision();
     }
 }

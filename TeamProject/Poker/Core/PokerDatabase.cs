@@ -13,8 +13,33 @@ namespace Poker.Core
         private IList<ICharacter> botPlayers = new List<ICharacter>();
         private IList<ICharacter> humanPlayers = new List<ICharacter>();
         private IList<ICard> deck = new List<ICard>();
-        private IList<ICard> tableCards = new List<ICard>();  
-       
+        private IList<ICard> tableCards = new List<ICard>();
+        private Dictionary<string, bool> stages = new Dictionary<string, bool>()
+        {
+            {"preflop", true },
+            {"flop", false },
+            {"turn", false },
+            {"river", false },
+            {"end", false }
+        };  
+        private IList<ICharacter> currPlayers = new List<ICharacter>();
+         
+        private ulong pot = 0;
+
+        public ulong Pot { get; set; }
+
+        public IList<ICharacter> CurrPlayers
+        {
+            get { return this.currPlayers; }
+            set { this.currPlayers = value; }
+        }
+
+        public Dictionary<string, bool> Stages
+        {
+            get { return this.stages; }
+            set { this.stages = value; }
+        }
+
         public IList<ICard> Deck
         {
             get { return this.deck; }

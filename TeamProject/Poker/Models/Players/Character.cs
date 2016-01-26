@@ -10,19 +10,26 @@ using Poker.Models;
 
 namespace Poker.Players
 {
-    public abstract class Character : ICharacter
+    public abstract class Character : ICharacter, IBot
     {
         private string name;
         private int power = 0;
         private IList<ICard> hand;
         private int chips;
-    
+        private bool isOnTurn = false;
+
         protected Character(string name, int chips, int power = 0)
         {
             this.Name = name;
             this.Hand = new List<ICard>();
             this.Power = power;
             this.Chips = chips;
+        }
+
+        public bool IsOnTurn
+        {
+            get { return this.isOnTurn; }
+            set { this.isOnTurn = value; }
         }
 
         public int Chips { get; set; }
@@ -61,6 +68,11 @@ namespace Poker.Players
         }
 
         public virtual void AllIn()
+        {
+            
+        }
+
+        public virtual void MakeDecision()
         {
             
         }

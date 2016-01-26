@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker.Interfaces
 {
-    public interface IComputerControlled
+    public interface IBot
     {
         void MakeDecision();
     }

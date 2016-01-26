@@ -14,7 +14,11 @@ namespace Poker.Interfaces
         IList<ICharacter> HumanPlayers { get; set; }
         IList<ICharacter> BotPlayers { get; set; }
         IList<ICard> TableCards { get; set; }
-        
+        ulong Pot { get; set; }
+        Dictionary<string, bool>  Stages { get; set; }
+        IList<ICharacter> CurrPlayers { get; set; }
+
+
         void AddBot(ICharacter bot);
         void AddHuman(ICharacter human);
         void AddCard(ICard card);

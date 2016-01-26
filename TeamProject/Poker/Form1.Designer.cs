@@ -1,6 +1,6 @@
 ﻿namespace Poker
 {
-    partial class Form1
+    public partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -361,33 +361,33 @@
 
         #endregion
 
-        private System.Windows.Forms.Button bFold;
-        private System.Windows.Forms.Button bCheck;
-        private System.Windows.Forms.Button bCall;
-        private System.Windows.Forms.Button bRaise;
-        private System.Windows.Forms.ProgressBar pbTimer;
-        private System.Windows.Forms.TextBox tbChips;
-        private System.Windows.Forms.Button bAdd;
-        private System.Windows.Forms.TextBox tbAdd;
-        private System.Windows.Forms.TextBox tbBotChips5;
-        private System.Windows.Forms.TextBox tbBotChips4;
-        private System.Windows.Forms.TextBox tbBotChips3;
-        private System.Windows.Forms.TextBox tbBotChips2;
-        private System.Windows.Forms.TextBox tbBotChips1;
-        private System.Windows.Forms.TextBox tbPot;
-        private System.Windows.Forms.Button bOptions;
-        private System.Windows.Forms.Button buttonBigBlind;
-        private System.Windows.Forms.TextBox textBoxSmallBlind;
-        private System.Windows.Forms.Button buttonSmallBlind;
-        private System.Windows.Forms.TextBox textBoxBigBlind;
-        private System.Windows.Forms.Label b5Status;
-        private System.Windows.Forms.Label b4Status;
-        private System.Windows.Forms.Label b3Status;
-        private System.Windows.Forms.Label b1Status;
-        private System.Windows.Forms.Label pStatus;
-        private System.Windows.Forms.Label b2Status;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxRaise;
+        public System.Windows.Forms.Button bFold;
+        public System.Windows.Forms.Button bCheck;
+        public System.Windows.Forms.Button bCall;
+        public System.Windows.Forms.Button bRaise;
+        public System.Windows.Forms.ProgressBar pbTimer;
+        public System.Windows.Forms.TextBox tbChips;
+        public System.Windows.Forms.Button bAdd;
+        public System.Windows.Forms.TextBox tbAdd;
+        public System.Windows.Forms.TextBox tbBotChips5;
+        public System.Windows.Forms.TextBox tbBotChips4;
+        public System.Windows.Forms.TextBox tbBotChips3;
+        public System.Windows.Forms.TextBox tbBotChips2;
+        public System.Windows.Forms.TextBox tbBotChips1;
+        public System.Windows.Forms.TextBox tbPot;
+        public System.Windows.Forms.Button bOptions;
+        public System.Windows.Forms.Button buttonBigBlind;
+        public System.Windows.Forms.TextBox textBoxSmallBlind;
+        public System.Windows.Forms.Button buttonSmallBlind;
+        public System.Windows.Forms.TextBox textBoxBigBlind;
+        public System.Windows.Forms.Label b5Status;
+        public System.Windows.Forms.Label b4Status;
+        public System.Windows.Forms.Label b3Status;
+        public System.Windows.Forms.Label b1Status;
+        public System.Windows.Forms.Label pStatus;
+        public System.Windows.Forms.Label b2Status;
+        public System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox textBoxRaise;
 
 
 

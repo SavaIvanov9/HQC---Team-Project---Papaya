@@ -29,9 +29,9 @@ namespace Poker
             InitializeComponent();
         }
         private void bFold_Click(object sender, EventArgs e)
-            {
-
-            }
+        {
+            //Engine.Instance.
+        }
 
         private void bCheck_Click(object sender, EventArgs e)
             {
@@ -67,6 +67,9 @@ namespace Poker
             {
 
             }
+
+        
+
         }
 
 
