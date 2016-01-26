@@ -72,6 +72,7 @@
     <Compile Include="Interfaces\ICheckable.cs" />
     <Compile Include="Interfaces\IDealer.cs" />
     <Compile Include="Interfaces\ICharacter.cs" />
+    <Compile Include="Interfaces\IDeckFillable.cs" />
     <Compile Include="Interfaces\IDeckShuffler.cs" />
     <Compile Include="Interfaces\IEverythingGivable.cs" />
     <Compile Include="Interfaces\IFoldable.cs" />

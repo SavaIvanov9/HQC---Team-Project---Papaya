@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Poker.Enums;
 using Poker.Interfaces;
 using Poker.Models;
 
@@ -50,7 +51,7 @@ namespace Poker.Table
         public void SetWinner()
         {
         }
-
+        
         public void Shuffle(IList<ICard> deck)
         {
             var randomNumberGenerator = new Random();
@@ -64,6 +65,17 @@ namespace Poker.Table
                 shuffledDeck[nextPositionInDeck] = movedCard;
             }
             deck = shuffledDeck;
+        }
+
+        public void FillDeck(IPokerDatabase database, ICardFactory cardFactory)
+        {
+            for (int cardPower = 2; cardPower <= 14; cardPower++)
+            {
+                foreach (CardType cardType in Enum.GetValues(typeof(CardType)))
+                {
+                    database.AddCard(cardFactory.CreateCard(cardPower, cardType));
+                }
+            }
         }
     }
 }

@@ -158,10 +158,6 @@ namespace Poker
 
         public Form1()
         {
-            
-
-            
-
            //pokerDatabase.AddBot("Bot1", cards, 2, 2);
            // bots.Add(botFactory.CreateBot("Steven", cards, 2));
            // DialogResult lole;

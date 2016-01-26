@@ -68,7 +68,7 @@ namespace Poker.Core
             thread.TrySetApartmentState(ApartmentState.STA);
             thread.Start();
 
-            FillDeck();
+            dealer.FillDeck(database, cardFactory);
             dealer.Shuffle(database.Deck);
             
             database.AddHuman(humanFactory.CreateHuman("Player", startingChips));
@@ -87,17 +87,6 @@ namespace Poker.Core
             //{
 
             //}
-        }
-
-        private void FillDeck()
-        {
-            for (int cardPower = 2; cardPower <= 14; cardPower++)
-            {
-                foreach (CardType cardType in Enum.GetValues(typeof (CardType)))
-                {
-                    database.AddCard(cardFactory.CreateCard(cardPower, cardType));
-                }
-            }
         }
     }
 }
