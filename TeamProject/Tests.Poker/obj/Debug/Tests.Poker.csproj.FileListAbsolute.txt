@@ -1,0 +1,7 @@
+C:\Users\doan\Desktop\SoftUniStudent\TeamworkHQC\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\obj\Debug\Tests.Poker.csprojResolveAssemblyReference.cache
+C:\Users\doan\Desktop\SoftUniStudent\TeamworkHQC\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\bin\Debug\Tests.Poker.dll
+C:\Users\doan\Desktop\SoftUniStudent\TeamworkHQC\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\bin\Debug\Tests.Poker.pdb
+C:\Users\doan\Desktop\SoftUniStudent\TeamworkHQC\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\bin\Debug\Poker.exe
+C:\Users\doan\Desktop\SoftUniStudent\TeamworkHQC\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\bin\Debug\Poker.pdb
+C:\Users\doan\Desktop\SoftUniStudent\TeamworkHQC\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\obj\Debug\Tests.Poker.dll
+C:\Users\doan\Desktop\SoftUniStudent\TeamworkHQC\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\obj\Debug\Tests.Poker.pdb

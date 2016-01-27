@@ -11,7 +11,7 @@ namespace Poker.Core.Factories
 {
     public class CardFactory:ICardFactory
     {
-        public ICard CreateCard(int cardPower, CardType cardType)
+        public ICard CreateCard(float cardPower, CardType cardType)
         {
             var card = new Card(cardPower, cardType);
 

@@ -8,6 +8,7 @@ namespace Poker.Interfaces
 {
     public interface IHandPowerChecker
     {
-        void CheckHandPower();
+        //from int to double return type
+        void CheckHandPower(ICharacter player,IList<ICard> tableCards);
     }
 }

@@ -9,7 +9,7 @@ namespace Poker.Interfaces
 {
    public interface ICard
    {
-       int CardPower { get; set; }
+       float CardPower { get; set; }
        CardType CardType { get; set; }
    }
 }

@@ -9,6 +9,6 @@ namespace Poker.Interfaces
 {
    public interface ICardFactory
    {
-       ICard CreateCard(int cardPower, CardType cardType);
+       ICard CreateCard(float cardPower, CardType cardType);
    }
 }
