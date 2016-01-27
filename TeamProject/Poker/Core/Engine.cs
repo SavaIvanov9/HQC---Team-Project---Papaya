@@ -23,14 +23,18 @@ namespace Poker.Core
         public readonly IPokerDatabase database = new PokerDatabase();
         public readonly IDealer dealer = new Dealer();
         public readonly IProcessCommand commandProcessor = new CommandProcessor();
-
+         
         public int raiseAmount;
 
         public static Form1 form;
 
         public static bool isRunning = true;
 
-        private int startingChips = 10000;
+        private static int startingChips = 10000;
+        public static int smallBlind = 500;
+        public static int bigBlind = smallBlind*2;
+        public List<int> blinds = new List<int>();
+
         public string currDecision;
 
         private static Engine instance;
@@ -50,21 +54,6 @@ namespace Poker.Core
             }
         }
 
-        //public Engine(
-        //    IBotFactory botFactory,
-        //    IHumanFactory humanFactory,
-        //    ICardFactory cardFactory,
-        //    IPokerDatabase database,
-        //    IDealer dealer)
-        //{
-        //    this.botFactory = botFactory;
-        //    this.humanFactory = humanFactory;
-        //    this.cardFactory = cardFactory;
-        //    this.database = database;
-        //    this.dealer = dealer;
-
-        //}
-
         private static void ThreadStart()
         {
             Application.Run(form = new Form1()); // <-- form started on its own UI thread
@@ -72,60 +61,42 @@ namespace Poker.Core
 
         public void Run()
         {
-
             var thread = new Thread(ThreadStart);
             thread.TrySetApartmentState(ApartmentState.STA);
             thread.Start();
 
-
             dealer.FillDeck(database, cardFactory);
-            //dealer.Shuffle(database.Deck);
 
             CreatePlayers();
 
-            //database.BotPlayers.Add(this.botFactory.CreateBot("go6o", 10));
-            //MessageBox.Show(database.BotPlayers[0].Name;
             Update(isRunning);
-
         }
 
         public void Update(bool isRunning)
         {
-            int promenliva = 0;
             while (isRunning)
             {
+                CheckForEnd();
+
                 dealer.Shuffle(database.Deck);
                 dealer.DealCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
-
+                
                 //players in врътката
+                GenerateCurrPlayers();
 
-                if (promenliva == 0)
-                {
-                    GenerateCurrPlayers();
-                }
+                //sets the new first player
+                SetFirstPlayer();
+
+                // напраи го на метод // блинд логика
+                database.Pot += (ulong)bigBlind + (ulong)smallBlind;
+                database.CurrPlayers[database.CurrPlayers.Count - 1].Chips -= bigBlind;
+                database.CurrPlayers[database.CurrPlayers.Count - 2].Chips -= smallBlind;
+
+                //SetBlinds();
 
                 //stages of врътката
                 if (database.Stages["preflop"])
                 {
-                    ////MessageBox.Show("it works!");
-                    //foreach (ICharacter player in database.CurrPlayers)
-                    //{
-                    //    if (player.Chips <= 0)
-                    //    {
-                    //        database.CurrPlayers.Remove(player);
-                    //    }
-
-                    //    if (player is Human)
-                    //    {
-                    //        HumanDecision();
-                    //    }
-                    //    else if (player is Bot)
-                    //    {
-                    //        player.MakeDecision();
-                    //    }
-                    //}
-
-                    //требе се добави кол, ако предния е рейзнал
                     PlayerRotator();
 
                     RemoveFoldedPlayers();
@@ -165,28 +136,15 @@ namespace Poker.Core
                     ContinueStage("end", "preflop");
                 }
 
-                if (promenliva > 30000)
-                {
-                    CheckPot();
-                    isRunning = false;
-                    //MessageBox.Show("ne iska6 da vijda6 tova brat");
-                    //CheckPot();
-                }
+                ClearCurrPlayers();
+
                 dealer.ReturnCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
-
-                promenliva++;
-
             }
         }
         
         private void HumanDecision()
         {
 
-        }
-
-        public void ExecuteMsgBox()
-        {
-            MessageBox.Show("raboti brat");
         }
 
         private void GenerateCurrPlayers()
@@ -209,7 +167,8 @@ namespace Poker.Core
                 {
                     if (currDecision == "raise")
                     {
-                        form.bCall.Enabled = false;
+                        form.bCheck.Enabled = false;
+
                         HumanDecision();
                     }
 
@@ -223,6 +182,7 @@ namespace Poker.Core
                 {
                     if (currDecision == "raise")
                     {
+                        raiseAmount = bigBlind*2;
                         database.CurrPlayers[i].MakeDecision(currDecision, database.CurrPlayers[i]);
                     }
 
@@ -252,12 +212,17 @@ namespace Poker.Core
 
         private void CreatePlayers()
         {
-            database.AddHuman(humanFactory.CreateHuman("Player", startingChips));
             database.AddBot(botFactory.CreateBot("Bot1", startingChips));
             database.AddBot(botFactory.CreateBot("Bot2", startingChips));
             database.AddBot(botFactory.CreateBot("Bot3", startingChips));
             database.AddBot(botFactory.CreateBot("Bot4", startingChips));
             database.AddBot(botFactory.CreateBot("Bot5", startingChips));
+            database.AddHuman(humanFactory.CreateHuman("Player", startingChips));
+        }
+
+        private void ClearCurrPlayers()
+        {
+            database.CurrPlayers.Clear();
         }
 
         public void GotinMethod()
@@ -276,6 +241,48 @@ namespace Poker.Core
         {
             database.Stages[currentStage] = false;
             database.Stages[nextStage] = true;
+        }
+
+        private void SetFirstPlayer()
+        {
+            var tempObj = database.CurrPlayers[0];
+
+            for (int i = 0; i < database.CurrPlayers.Count - 1; i++)
+            {
+                database.CurrPlayers[i] = database.CurrPlayers[i + 1];
+            }
+
+            database.CurrPlayers[database.CurrPlayers.Count - 1] = tempObj;
+        }
+
+        private void SetBlinds()
+        {
+            for (int i = 0; i < database.CurrPlayers.Count; i++)
+            {
+                if (i < database.CurrPlayers.Count - 2)
+                {
+                    blinds.Add(0);
+                }
+                if (i == database.CurrPlayers.Count - 1)
+                {
+                    blinds.Add(smallBlind);
+                }
+                else if (i == database.CurrPlayers.Count -2)
+                {
+                    blinds.Add(bigBlind);
+                }
+            }
+        }
+
+        private void CheckForEnd()
+        {
+            foreach (var player in database.CurrPlayers)
+            {
+                if (player is Human && player.Chips <= 0)
+                {
+                    isRunning = false;
+                }
+            }
         }
     }
 }

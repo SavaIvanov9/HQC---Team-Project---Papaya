@@ -21,9 +21,11 @@ namespace Poker.Players
 
         public override void MakeDecision(string currDecision, ICharacter player)
         {
+            Random random = new Random();
+
             if (currDecision == "raise")
             {
-                Random random = new Random();
+                
                 int rInt = random.Next(1, 4);
 
                 if (rInt == 1)
@@ -31,7 +33,7 @@ namespace Poker.Players
                     Engine.Instance.commandProcessor.AllIn(Engine.Instance.database, player);
                 }
 
-                if (rInt == 2)
+                if (rInt == 2 && player.Chips > Engine.Instance.raiseAmount)
                 {
                     Engine.Instance.commandProcessor.Call(Engine.Instance.database, player, Engine.Instance.raiseAmount);
                 }
@@ -41,14 +43,18 @@ namespace Poker.Players
                     Engine.Instance.commandProcessor.Fold(Engine.Instance.database, player);
                 }
 
-                if (rInt == 4)
+                if (rInt == 4 && Engine.Instance.raiseAmount < player.Chips)
                 {
                     Engine.Instance.commandProcessor.Raise(Engine.Instance.database, player, Engine.Instance.raiseAmount);
+                }
+
+                else
+                {
+                    Engine.Instance.commandProcessor.Fold(Engine.Instance.database, player);
                 }
             }
             else
             {
-                Random random = new Random();
                 int rInt = random.Next(1, 5);
 
                 if (rInt == 1)
@@ -56,7 +62,7 @@ namespace Poker.Players
                     Engine.Instance.commandProcessor.AllIn(Engine.Instance.database, player);
                 }
 
-                if (rInt == 2)
+                if (rInt == 2 && player.Chips > Engine.Instance.raiseAmount)
                 {
                     Engine.Instance.commandProcessor.Call(Engine.Instance.database, player, Engine.Instance.raiseAmount);
                 }
@@ -66,7 +72,7 @@ namespace Poker.Players
                     Engine.Instance.commandProcessor.Fold(Engine.Instance.database, player);
                 }
 
-                if (rInt == 4)
+                if (rInt == 4 && Engine.Instance.raiseAmount < player.Chips)
                 {
                     Engine.Instance.commandProcessor.Raise(Engine.Instance.database, player, Engine.Instance.raiseAmount);
                 }
@@ -75,6 +81,12 @@ namespace Poker.Players
                 {
                     Engine.Instance.commandProcessor.Check();
                 }
+
+                else
+                {
+                    Engine.Instance.commandProcessor.Fold(Engine.Instance.database, player);
+                }
+               
             }
         }
 

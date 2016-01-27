@@ -5,3 +5,11 @@ C:\Users\doan\Desktop\SoftUniStudent\TeamworkHQC\HQC---Team-Project---Papaya\Tea
 C:\Users\doan\Desktop\SoftUniStudent\TeamworkHQC\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\bin\Debug\Poker.pdb
 C:\Users\doan\Desktop\SoftUniStudent\TeamworkHQC\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\obj\Debug\Tests.Poker.dll
 C:\Users\doan\Desktop\SoftUniStudent\TeamworkHQC\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\obj\Debug\Tests.Poker.pdb
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\bin\Debug\Tests.Poker.dll
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\bin\Debug\Tests.Poker.pdb
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\bin\Debug\Poker.exe
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\bin\Debug\Poker.pdb
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\obj\Debug\Tests.Poker.csprojResolveAssemblyReference.cache
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\obj\Debug\Tests.Poker.dll
+C:\Users\vivacom.bg\Desktop\SoftUni\Fundamental Level\HQC -TeamProject\HQC---Team-Project---Papaya\TeamProject\Tests.Poker\obj\Debug\Tests.Poker.pdb

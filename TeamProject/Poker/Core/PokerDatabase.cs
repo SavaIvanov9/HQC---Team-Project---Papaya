@@ -26,8 +26,12 @@ namespace Poker.Core
         };  
 
         private IList<ICharacter> currPlayers = new List<ICharacter>();
-         
-        public ulong Pot { get; set; }
+
+        public ulong Pot
+        {
+            get { return this.pot; }
+            set { this.pot = value; }
+        }
 
         public IList<ICharacter> CurrPlayers
         {
