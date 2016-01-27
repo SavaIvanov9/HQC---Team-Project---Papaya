@@ -14,7 +14,7 @@ namespace Poker.Table
 
         public void CheckHandPower()
         {
-           
+
         }
 
         public void DealCards(IList<ICard> deck, IList<ICharacter> humans, IList<ICharacter> bots, IList<ICard> tableCards)
@@ -49,23 +49,61 @@ namespace Poker.Table
 
         }
 
+        public void ReturnCards(IList<ICard> deck, IList<ICharacter> humans, IList<ICharacter> bots, IList<ICard> tableCards)
+        {
+            //for (int i = 0; i <= 17; i++)
+            //{
+            //    humans[]
+            //}
+            foreach (ICharacter human in humans)
+            {
+                deck.Add(human.Hand[1]);
+                human.Hand.Remove(human.Hand[1]);
+
+                deck.Add(human.Hand[0]);
+                human.Hand.Remove(human.Hand[0]);
+
+            }
+
+            foreach (ICharacter bot in bots)
+            {
+                deck.Add(bot.Hand[1]);
+                bot.Hand.Remove(bot.Hand[1]);
+
+                deck.Add(bot.Hand[0]);
+                bot.Hand.Remove(bot.Hand[0]);
+            }
+
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    tableCards.Add(deck[deck.Count - 1]);
+            //    deck.RemoveAt(deck.Count - 1);
+            //}
+
+            for (int i = 0; i < 5; i++)
+            {
+                deck.Add(tableCards[tableCards.Count - 1]);
+                tableCards.RemoveAt(tableCards.Count - 1);
+            }
+
+
+        }
+
         public void SetWinner()
         {
         }
-        
+
         public void Shuffle(IList<ICard> deck)
         {
-            var randomNumberGenerator = new Random();
+            var rand = new Random();
 
-            var shuffledDeck = deck;
-            for (var currentCardIndex = 0; currentCardIndex < 52; currentCardIndex++)
+            for (int i = deck.Count - 1; i > 0; i--)
             {
-                int nextPositionInDeck = currentCardIndex + randomNumberGenerator.Next(0, 52 - currentCardIndex);
-                var movedCard = shuffledDeck[currentCardIndex];
-                shuffledDeck[currentCardIndex] = shuffledDeck[nextPositionInDeck];
-                shuffledDeck[nextPositionInDeck] = movedCard;
+                int n = rand.Next(i + 1);
+                var temp = deck[i];
+                deck[i] = deck[n];
+                deck[n] = temp;
             }
-            deck = shuffledDeck;
         }
 
         public void FillDeck(IPokerDatabase database, ICardFactory cardFactory)

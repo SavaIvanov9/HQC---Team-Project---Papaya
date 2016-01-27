@@ -64,22 +64,22 @@ namespace Poker.Players
             
         }
 
-        public virtual void Raise()
+        public virtual void Raise(IPokerDatabase database, ICharacter player, int raiseAmount)
         {
             
         }
 
-        public virtual void Call()
+        public virtual void Call(IPokerDatabase database, ICharacter player, int raiseAmount)
         {
             
         }
 
-        public virtual void Fold()
+        public virtual void Fold(IPokerDatabase database, ICharacter player)
         {
             
         }
 
-        public virtual void AllIn()
+        public virtual void AllIn(IPokerDatabase database, ICharacter player)
         {
             
         }
