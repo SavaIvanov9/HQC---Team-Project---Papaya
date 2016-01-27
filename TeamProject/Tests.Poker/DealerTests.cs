@@ -25,13 +25,13 @@ namespace Tests.Poker
         public void Dealer_PowerSettingToPlayer_ShouldWork()
         {
             tableCards.Add(cardFactory.CreateCard(2, CardType.Diamonds));
-            tableCards.Add(cardFactory.CreateCard(14, CardType.Spades));
-            tableCards.Add(cardFactory.CreateCard(14, CardType.Diamonds));
+            tableCards.Add(cardFactory.CreateCard(3, CardType.Spades));
+            tableCards.Add(cardFactory.CreateCard(4, CardType.Diamonds));
             tableCards.Add(cardFactory.CreateCard(2, CardType.Diamonds));
             tableCards.Add(cardFactory.CreateCard(7, CardType.Diamonds));
 
-            player1.Hand.Add(cardFactory.CreateCard(14,CardType.Hearts));
-            player1.Hand.Add(cardFactory.CreateCard(4,CardType.Hearts));
+            player1.Hand.Add(cardFactory.CreateCard(5,CardType.Hearts));
+            player1.Hand.Add(cardFactory.CreateCard(6,CardType.Hearts));
             
             player2.Hand.Add(cardFactory.CreateCard(5,CardType.Spades));
             player2.Hand.Add(cardFactory.CreateCard(13,CardType.Hearts));
@@ -39,7 +39,7 @@ namespace Tests.Poker
             dealer.CheckHandPower(player1,tableCards);
             dealer.CheckHandPower(player2,tableCards);
 
-            Assert.AreEqual(2.18m,player1.Power);
+            Assert.AreEqual(4.06m,player1.Power);
         }
     }
 }

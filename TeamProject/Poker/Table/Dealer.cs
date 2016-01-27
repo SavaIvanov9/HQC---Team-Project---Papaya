@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.Contracts;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
@@ -32,24 +33,34 @@ namespace Poker.Table
         {
             decimal powerToSet = 0;
 
+            powerToSet = CheckForStraight(player, tableCards);
+            if (powerToSet >= initialPowerStraight)
+            {
+                player.Power = powerToSet;
+                return;
+            }
+
             powerToSet = CheckForThreeOfKind(player, tableCards);
             if (powerToSet >= initialPowerThreeOfKind)
             {
                 player.Power = powerToSet;
                 return;
             }
+
             powerToSet = CheckForTwoPair(player, tableCards);
             if (powerToSet >= initialPowerTwoPair)
             {
                 player.Power = powerToSet;
                 return;
             }
+
             powerToSet = CheckForOnePair(player, tableCards);
             if (powerToSet >= initialPowerOnePair)
             {
                 player.Power = powerToSet;
                 return;
             }
+
             powerToSet = CheckForHighCard(player);
             if (powerToSet >= 1)
             {
@@ -157,6 +168,41 @@ namespace Poker.Table
             }
         }
 
+        private decimal CheckForStraight(ICharacter player, IList<ICard> tableCards)
+        {
+            List<ICard> allCards = new List<ICard>();
+            List<ICard> sortedList = new List<ICard>();
+            allCards.AddRange(tableCards);
+            allCards.AddRange(player.Hand);
+            sortedList.AddRange(allCards.OrderBy(p => p.CardPower));
+
+            bool done = false;
+            int counter = 0;
+            ICard lastCard = null;
+            for (int i = 0; i < allCards.Count-1; i++)
+            {
+                if (sortedList[i].CardPower == sortedList[i + 1].CardPower - 1)
+                {
+                    counter++;
+                    if (counter == 4)
+                    {
+                        lastCard = sortedList[i + 1];
+                        done = true;
+                        break;
+                    }
+                }
+                else
+                {
+                    done = false;
+                    counter = 0;
+                }
+            }
+            if (done)
+            {
+                return initialPowerStraight + (lastCard.CardPower/100);
+            }
+            return 0;
+        }
 
         private decimal CheckForThreeOfKind(ICharacter player, IList<ICard> tableCards)
         {
