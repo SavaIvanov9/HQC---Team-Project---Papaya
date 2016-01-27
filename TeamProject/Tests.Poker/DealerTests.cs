@@ -26,7 +26,7 @@ namespace Tests.Poker
         {
             tableCards.Add(cardFactory.CreateCard(2, CardType.Diamonds));
             tableCards.Add(cardFactory.CreateCard(14, CardType.Spades));
-            tableCards.Add(cardFactory.CreateCard(11, CardType.Diamonds));
+            tableCards.Add(cardFactory.CreateCard(14, CardType.Diamonds));
             tableCards.Add(cardFactory.CreateCard(2, CardType.Diamonds));
             tableCards.Add(cardFactory.CreateCard(7, CardType.Diamonds));
 
@@ -39,7 +39,7 @@ namespace Tests.Poker
             dealer.CheckHandPower(player1,tableCards);
             dealer.CheckHandPower(player2,tableCards);
 
-            Assert.AreEqual(3.14f,player1.Power);
+            Assert.AreEqual(2.18m,player1.Power);
         }
     }
 }

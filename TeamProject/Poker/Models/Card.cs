@@ -10,16 +10,16 @@ namespace Poker.Models
 {
     public class Card : ICard
     {
-        private float cardPower;
+        private decimal cardPower;
         private CardType cardType;
 
-        public Card(float cardPower, CardType cardType)
+        public Card(decimal cardPower, CardType cardType)
         {
             this.CardPower = cardPower;
             this.CardType = cardType;
         }
 
-        public float CardPower
+        public decimal CardPower
         {
             get { return this.cardPower; }
             set { this.cardPower = value; }

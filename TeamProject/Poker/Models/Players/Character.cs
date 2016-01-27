@@ -13,7 +13,7 @@ namespace Poker.Players
     public abstract class Character : ICharacter, IBot
     {
         private string name;
-        private float power = 0;
+        private decimal power = 0;
         private IList<ICard> hand;
         private int chips;
         private bool isOnTurn = false;
@@ -27,7 +27,7 @@ namespace Poker.Players
             {"call", false }
         };
 
-        protected Character(string name, int chips, float power = 0)
+        protected Character(string name, int chips, decimal power = 0)
         {
             this.Name = name;
             this.Hand = new List<ICard>();
@@ -51,7 +51,7 @@ namespace Poker.Players
 
         public string Name { get; set; }
 
-        public float Power
+        public decimal Power
         {
             get { return this.power; }
             set { this.power = value; }

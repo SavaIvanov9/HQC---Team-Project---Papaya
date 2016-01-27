@@ -11,7 +11,7 @@ namespace Poker.Interfaces
         string Name { get; set; }
         int Chips { get; set; }
         IList<ICard> Hand { get; set; }
-        float Power { get; set; }
+        decimal Power { get; set; }
         bool IsOnTurn { get; set; }
         bool IsFolded { get; set; }
         void MakeDecision(string currDecision, ICharacter player);

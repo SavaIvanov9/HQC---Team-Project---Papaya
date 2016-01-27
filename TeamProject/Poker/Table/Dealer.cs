@@ -13,27 +13,39 @@ namespace Poker.Table
 {
     public class Dealer : IDealer
     {
-        private float power = 0;
-        private const float initialPowerOnePair = 1;
+        private decimal power = 0;
+        private const decimal initialPowerOnePair = 1;
+        private const decimal initialPowerTwoPair = 2;
+        private const decimal initialPowerThreeOfKind = 3;
+        private const decimal initialPowerStraight = 4;
+        private const decimal initialPowerFlush = 5;
+        private const decimal initialPowerFullHouse = 6;
+        private const decimal initialPowerFourOfKind = 7;
+        private const decimal initialStraightFlush = 8;
+        private const decimal initialPowerRoyalFlush = 9;
+
+
+
+
         //TODO:from int to double return type
         public void CheckHandPower(ICharacter player, IList<ICard> tableCards)
         {
-            float powerToSet = 0;
+            decimal powerToSet = 0;
 
             powerToSet = CheckForThreeOfKind(player, tableCards);
-            if (powerToSet >= 3)
+            if (powerToSet >= initialPowerThreeOfKind)
             {
                 player.Power = powerToSet;
                 return;
             }
             powerToSet = CheckForTwoPair(player, tableCards);
-            if (powerToSet >= 2)
+            if (powerToSet >= initialPowerTwoPair)
             {
                 player.Power = powerToSet;
                 return;
             }
             powerToSet = CheckForOnePair(player, tableCards);
-            if (powerToSet >= 1)
+            if (powerToSet >= initialPowerOnePair)
             {
                 player.Power = powerToSet;
                 return;
@@ -145,7 +157,8 @@ namespace Poker.Table
             }
         }
 
-        private float CheckForThreeOfKind(ICharacter player, IList<ICard> tableCards)
+
+        private decimal CheckForThreeOfKind(ICharacter player, IList<ICard> tableCards)
         {
             int counter = 0;
             //two equal cards in hand and searching for the thrid one in table cards
@@ -155,7 +168,7 @@ namespace Poker.Table
                 {
                     if (player.Hand[0] == tableCards[i])
                     {
-                        power = 3 + (player.Hand[0].CardPower/100);
+                        power = initialPowerThreeOfKind + (player.Hand[0].CardPower/100);
                         return power;
                     } 
                 }
@@ -170,7 +183,7 @@ namespace Poker.Table
             }
             if (counter == 2)
             {
-                power = 3 + (player.Hand[0].CardPower / 100);
+                power = initialPowerThreeOfKind + (player.Hand[0].CardPower / 100);
                 return power;
             }
             counter = 0;
@@ -183,14 +196,14 @@ namespace Poker.Table
             }
             if (counter == 2)
             {
-                power = 3 + (player.Hand[1].CardPower / 100);
+                power = initialPowerThreeOfKind + (player.Hand[1].CardPower / 100);
                 return power;
             }
             return 0;
 
         }
 
-        private float CheckForTwoPair(ICharacter player, IList<ICard> tableCards)
+        private decimal CheckForTwoPair(ICharacter player, IList<ICard> tableCards)
         {
             power = 0;
             for (int i = 0; i < tableCards.Count; i++)
@@ -200,9 +213,9 @@ namespace Poker.Table
                 {
                     for (int j = 0; j < tableCards.Count; j++)
                     {
-                        if (player.Hand[1].CardPower == tableCards[i].CardPower)
+                        if (player.Hand[1].CardPower == tableCards[j].CardPower)
                         {
-                            power = 2 + (player.Hand[0].CardPower / 100) + (player.Hand[1].CardPower / 100);
+                            power = initialPowerTwoPair + (player.Hand[0].CardPower / 100) + (player.Hand[1].CardPower / 100);
                             return power;
                         }
                     }
@@ -213,7 +226,7 @@ namespace Poker.Table
                     {
                         if (player.Hand[0].CardPower == tableCards[i].CardPower)
                         {
-                            power = 2 + (player.Hand[0].CardPower / 100) + (player.Hand[1].CardPower / 100);
+                            power = initialPowerTwoPair + (player.Hand[0].CardPower / 100) + (player.Hand[1].CardPower / 100);
                             return power;
                         }
                     }
@@ -222,7 +235,7 @@ namespace Poker.Table
             return power;
         }
 
-        private float CheckForOnePair(ICharacter player, IList<ICard> tableCards)
+        private decimal CheckForOnePair(ICharacter player, IList<ICard> tableCards)
         {
             for (int i = 0; i < tableCards.Count; i++)
             {
@@ -238,6 +251,7 @@ namespace Poker.Table
                 }
                 if (CheckForPairInHand(player))
                 {
+                    
                     power = initialPowerOnePair + (player.Hand[0].CardPower / 100);
                     return power;
                 }
@@ -245,10 +259,10 @@ namespace Poker.Table
             return 0;
         }
 
-        private float CheckForHighCard(ICharacter player)
+        private decimal CheckForHighCard(ICharacter player)
         {
-            float[] powers = new float[2];
-            float highCardInHandPower = 0;
+            decimal[] powers = new decimal[2];
+            decimal highCardInHandPower = 0;
             powers[0] = player.Hand[0].CardPower;
             powers[1] = player.Hand[1].CardPower;
             highCardInHandPower = (powers.Max()/100);
