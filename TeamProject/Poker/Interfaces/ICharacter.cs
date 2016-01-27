@@ -14,6 +14,6 @@ namespace Poker.Interfaces
         int Power { get; set; }
         bool IsOnTurn { get; set; }
         bool IsFolded { get; set; }
-        string MakeDecision();
+        void MakeDecision(string currDecision, ICharacter player);
     }
 }

@@ -15,5 +15,7 @@ namespace Poker.Core.Commands
         public const string Player_Raise = "raise";
 
         public const string Player_AllIn = "allin";
+
+        public const string Player_Check = "check";
     }
 }

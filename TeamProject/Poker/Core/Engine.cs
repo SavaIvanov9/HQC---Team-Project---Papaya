@@ -17,19 +17,21 @@ namespace Poker.Core
 {
     public class Engine : IRunnable
     {
-        private readonly IBotFactory botFactory = new BotFactory();
-        private readonly IHumanFactory humanFactory = new HumanFactory();
-        private readonly ICardFactory cardFactory = new CardFactory();
-        private readonly IPokerDatabase database = new PokerDatabase();
-        private readonly IDealer dealer = new Dealer();
-        private readonly IProcessCommand commandProcessor = new CommandProcessor();
+        public readonly IBotFactory botFactory = new BotFactory();
+        public readonly IHumanFactory humanFactory = new HumanFactory();
+        public readonly ICardFactory cardFactory = new CardFactory();
+        public readonly IPokerDatabase database = new PokerDatabase();
+        public readonly IDealer dealer = new Dealer();
+        public readonly IProcessCommand commandProcessor = new CommandProcessor();
+
+        public int raiseAmount;
 
         public static Form1 form;
 
         public static bool isRunning = true;
 
         private int startingChips = 10000;
-        private string currDecision;
+        public string currDecision;
 
         private static Engine instance;
 
@@ -92,7 +94,6 @@ namespace Poker.Core
             int promenliva = 0;
             while (isRunning)
             {
-
                 dealer.Shuffle(database.Deck);
                 dealer.DealCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
 
@@ -125,7 +126,6 @@ namespace Poker.Core
                     //}
 
                     //требе се добави кол, ако предния е рейзнал
-
                     PlayerRotator();
 
                     RemoveFoldedPlayers();
@@ -178,12 +178,7 @@ namespace Poker.Core
 
             }
         }
-
-        private void DoFold()
-        {
-
-        }
-
+        
         private void HumanDecision()
         {
 
@@ -212,13 +207,29 @@ namespace Poker.Core
             {
                 if (database.CurrPlayers[i] is Human && database.CurrPlayers[i].IsFolded == false)
                 {
-                    form.bCall.Enabled = false;
-                    HumanDecision();
+                    if (currDecision == "raise")
+                    {
+                        form.bCall.Enabled = false;
+                        HumanDecision();
+                    }
+
+                    else
+                    {
+                        HumanDecision();
+                    }
                 }
 
                 if (database.CurrPlayers[i] is Bot && database.CurrPlayers[i].IsFolded == false)
                 {
-                    currDecision = database.CurrPlayers[i].MakeDecision();
+                    if (currDecision == "raise")
+                    {
+                        database.CurrPlayers[i].MakeDecision(currDecision, database.CurrPlayers[i]);
+                    }
+
+                    else
+                    {
+                        database.CurrPlayers[i].MakeDecision(currDecision, database.CurrPlayers[i]);
+                    }                    
                 }
 
                 if (i == database.CurrPlayers.Count - 1 && currDecision == "raise")

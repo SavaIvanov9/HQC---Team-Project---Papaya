@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Poker.Interfaces
 {
-    public interface IProcessCommand : IFoldable, ICallable, IAllIn, IRaiseable
+    public interface IProcessCommand : IFoldable, ICallable, IAllIn, IRaiseable, ICheckable
     {
     }
 }

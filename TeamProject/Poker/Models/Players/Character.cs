@@ -84,10 +84,9 @@ namespace Poker.Players
             
         }
 
-        public virtual string MakeDecision()
+        public virtual void MakeDecision(string currDecision, ICharacter player)
         {
-            string hui = null;
-            return hui;
+                       
         }
     }
 }

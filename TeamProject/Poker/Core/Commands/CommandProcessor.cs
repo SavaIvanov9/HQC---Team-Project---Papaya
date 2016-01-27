@@ -39,18 +39,23 @@ namespace Poker.Core.Commands
                 case Constants.Player_Raise:
                     this.Raise(database, player, raiseAmount);
                     break;
+                case Constants.Player_Check:
+                    this.Check();
+                    break;
                 default:
                     break;
             }
         }
-
+        
         public void Fold(IPokerDatabase database, ICharacter player)
         {
+            Engine.Instance.currDecision = "fold";
             database.CurrPlayers.Remove(player);
         }
 
         public void Call(IPokerDatabase database, ICharacter player, int raiseAmount)
         {
+            Engine.Instance.currDecision = "call";
             if (player.Chips >= raiseAmount)
             {
                 database.Pot += (ulong) raiseAmount;
@@ -60,16 +65,23 @@ namespace Poker.Core.Commands
 
         public void AllIn(IPokerDatabase database, ICharacter player)
         {
+            Engine.Instance.currDecision = "allin";
             database.Pot += (ulong) player.Chips;
         }
 
         public void Raise(IPokerDatabase database, ICharacter player, int raiseAmount)
         {
+            Engine.Instance.currDecision = "raise";
             if (player.Chips >= raiseAmount)
             {
                 database.Pot += (ulong) raiseAmount;
                 player.Chips -= raiseAmount;
             }
+        }
+
+        public void Check()
+        {
+            
         }
     }
 }
