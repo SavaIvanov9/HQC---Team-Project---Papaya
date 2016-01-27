@@ -33,6 +33,13 @@ namespace Poker.Table
         {
             decimal powerToSet = 0;
 
+            powerToSet = CheckForFlush(player, tableCards);
+            if (powerToSet >= initialPowerFlush)
+            {
+                player.Power = powerToSet;
+                return;
+            }
+
             powerToSet = CheckForStraight(player, tableCards);
             if (powerToSet >= initialPowerStraight)
             {
@@ -167,6 +174,33 @@ namespace Poker.Table
                 }
             }
         }
+
+        private decimal CheckForFlush(ICharacter player, IList<ICard> tableCards)
+        {
+            List<ICard> allCards = new List<ICard>();
+            allCards.AddRange(tableCards);
+            allCards.AddRange(player.Hand);
+            int counter = 0;
+            decimal flushPower = 0;
+            foreach (CardType cardType in Enum.GetValues(typeof(CardType)))
+            {
+                foreach (ICard card in allCards)
+                {
+                    if (card.CardType == cardType)
+                    {
+                        flushPower += card.CardPower;
+                        counter++;
+                    }
+                }
+                if (counter >= 5)
+                {
+                    return initialPowerFlush + (flushPower/100);
+                }
+                counter = 0;
+            }
+            return 0;
+        }
+
 
         private decimal CheckForStraight(ICharacter player, IList<ICard> tableCards)
         {
