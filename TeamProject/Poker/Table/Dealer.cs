@@ -33,6 +33,14 @@ namespace Poker.Table
         {
             decimal powerToSet = 0;
 
+            powerToSet = CheckForFullHouse(player, tableCards);
+            if (powerToSet >= initialPowerFullHouse)
+            {
+                player.Power = powerToSet;
+                return;
+            }
+
+
             powerToSet = CheckForFlush(player, tableCards);
             if (powerToSet >= initialPowerFlush)
             {
@@ -173,6 +181,30 @@ namespace Poker.Table
                     database.AddCard(cardFactory.CreateCard(cardPower, cardType));
                 }
             }
+        }
+
+        //private decimal CheckFourOfKind(ICharacter player, IList<ICard> tableCards)
+        //{
+            
+        //}
+
+        private decimal CheckForFullHouse(ICharacter player, IList<ICard> tableCards)
+        {
+            List<ICard> card = new List<ICard>();
+            card.AddRange(tableCards);
+            List<ICard> newCard = new List<ICard>();
+            newCard.AddRange(card.GroupBy(e => e.CardPower).Select(g => g.First()));
+            decimal threeOfKind = CheckForThreeOfKind(player, card);
+            decimal onePair = CheckForOnePair(player, newCard);
+
+            if (threeOfKind >= 3)
+            {
+                if (onePair >= 1)
+                {
+                    return initialPowerFullHouse + (threeOfKind/100) + (onePair/100);
+                }
+            }
+            return 0;
         }
 
         private decimal CheckForFlush(ICharacter player, IList<ICard> tableCards)
@@ -331,7 +363,6 @@ namespace Poker.Table
                 }
                 if (CheckForPairInHand(player))
                 {
-                    
                     power = initialPowerOnePair + (player.Hand[0].CardPower / 100);
                     return power;
                 }

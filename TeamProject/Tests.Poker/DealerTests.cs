@@ -25,13 +25,13 @@ namespace Tests.Poker
         public void Dealer_PowerSettingToPlayer_ShouldWork()
         {
             tableCards.Add(cardFactory.CreateCard(2, CardType.Diamonds));
-            tableCards.Add(cardFactory.CreateCard(3, CardType.Spades));
+            tableCards.Add(cardFactory.CreateCard(2, CardType.Spades));
+            tableCards.Add(cardFactory.CreateCard(5, CardType.Diamonds));
             tableCards.Add(cardFactory.CreateCard(4, CardType.Diamonds));
-            tableCards.Add(cardFactory.CreateCard(2, CardType.Diamonds));
             tableCards.Add(cardFactory.CreateCard(7, CardType.Diamonds));
 
             player1.Hand.Add(cardFactory.CreateCard(5,CardType.Diamonds));
-            player1.Hand.Add(cardFactory.CreateCard(6,CardType.Hearts));
+            player1.Hand.Add(cardFactory.CreateCard(2,CardType.Hearts));
             
             player2.Hand.Add(cardFactory.CreateCard(5,CardType.Spades));
             player2.Hand.Add(cardFactory.CreateCard(13,CardType.Hearts));
