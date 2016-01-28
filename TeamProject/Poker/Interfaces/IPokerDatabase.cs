@@ -17,6 +17,7 @@ namespace Poker.Interfaces
         int Pot { get; set; }
         Dictionary<string, bool>  Stages { get; set; }
         IList<ICharacter> CurrPlayers { get; set; }
+        List<ICharacter> CyclePlayers { get; set; }
 
 
         void AddBot(ICharacter bot);

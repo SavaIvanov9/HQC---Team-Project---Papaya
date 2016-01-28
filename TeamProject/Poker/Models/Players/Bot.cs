@@ -11,47 +11,61 @@ namespace Poker.Players
 {
     public class Bot : Character, IBot
     {
+        private Random random = new Random();
 
-        public Bot(string name, int chips, decimal power = 0) 
-            :base(name, chips, power)
+        public Bot(string name, int chips, decimal power = 0)
+            : base(name, chips, power)
         {
-            this.Hand = new List<ICard>();            
+            this.Hand = new List<ICard>();
         }
-        
+
 
         public override void MakeDecision(string currDecision, ICharacter player)
         {
-            Random random = new Random();
-
             if (currDecision == "raise")
             {
-                
-                int rInt = random.Next(1, 4);
-
-                if (rInt == 1)
+                if (player.Chips < Engine.Instance.raiseAmount)
                 {
-                    Engine.Instance.commandProcessor.AllIn(Engine.Instance.database, player);
-                }
+                    int rInt = random.Next(1, 2);
+                    if (rInt == 1)
+                    {
+                        Engine.Instance.raiseAmount = player.Chips;
+                        Engine.Instance.commandProcessor.AllIn(Engine.Instance.database, player);
+                    }
 
-                if (rInt == 2 && player.Chips > Engine.Instance.raiseAmount)
-                {
-                    Engine.Instance.commandProcessor.Call(Engine.Instance.database, player, Engine.Instance.raiseAmount);
+                    if (rInt == 3)
+                    {
+                        Engine.Instance.commandProcessor.Fold(Engine.Instance.database, player);
+                    }
                 }
-
-                if (rInt == 3)
-                {
-                    Engine.Instance.commandProcessor.Fold(Engine.Instance.database, player);
-                }
-
-                if (rInt == 4 && Engine.Instance.raiseAmount < player.Chips)
-                {
-                    Engine.Instance.commandProcessor.Raise(Engine.Instance.database, player, Engine.Instance.raiseAmount);
-                }
-
                 else
                 {
-                    Engine.Instance.commandProcessor.Fold(Engine.Instance.database, player);
+                    int rInt = random.Next(1, 4);
+
+                    if (rInt == 1)
+                    {
+                        Engine.Instance.raiseAmount = player.Chips;
+                        Engine.Instance.commandProcessor.AllIn(Engine.Instance.database, player);
+                    }
+
+                    if (rInt == 2 && player.Chips > Engine.Instance.raiseAmount)
+                    {
+                        Engine.Instance.commandProcessor.Call(Engine.Instance.database, player,
+                            Engine.Instance.raiseAmount);
+                    }
+
+                    if (rInt == 3)
+                    {
+                        Engine.Instance.commandProcessor.Fold(Engine.Instance.database, player);
+                    }
+
+                    if (rInt == 4 && Engine.Instance.raiseAmount < player.Chips)
+                    {
+                        Engine.Instance.commandProcessor.Raise(Engine.Instance.database, player,
+                            Engine.Instance.raiseAmount * 2);
+                    }
                 }
+
             }
             else
             {
@@ -81,14 +95,7 @@ namespace Poker.Players
                 {
                     Engine.Instance.commandProcessor.Check();
                 }
-
-                else
-                {
-                    Engine.Instance.commandProcessor.Fold(Engine.Instance.database, player);
-                }
-               
             }
         }
-
     }
 }

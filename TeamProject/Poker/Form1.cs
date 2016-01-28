@@ -31,7 +31,7 @@ namespace Poker
         private void bFold_Click(object sender, EventArgs e)
         {
             //Engine.Instance.ExecuteMsgBox();
-            Engine.Instance.GotinMethod();
+            //Engine.Instance.GotinMethod();
             //this.bFold.Enabled = false;
             this.bCall.Visible = false;
             //Engine.Instance.

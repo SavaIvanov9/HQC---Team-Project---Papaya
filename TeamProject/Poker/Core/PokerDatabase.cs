@@ -26,6 +26,7 @@ namespace Poker.Core
         };  
 
         private IList<ICharacter> currPlayers = new List<ICharacter>();
+        private IList<ICharacter> cyclePlayers = new List<ICharacter>();
 
         public int Pot
         {
@@ -37,6 +38,12 @@ namespace Poker.Core
         {
             get { return this.currPlayers; }
             set { this.currPlayers = value; }
+        }
+
+        public List<ICharacter> CyclePlayers
+        {
+            get { return (List<ICharacter>) this.cyclePlayers; }
+            set { this.cyclePlayers = value; }
         }
 
         public Dictionary<string, bool> Stages
@@ -68,6 +75,7 @@ namespace Poker.Core
             get { return this.tableCards; }
             set { this.tableCards = value; }
         }
+
         public void AddBot(ICharacter bot)
         {
             BotPlayers.Add(bot);

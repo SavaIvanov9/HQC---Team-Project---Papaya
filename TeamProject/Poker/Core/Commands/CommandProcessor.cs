@@ -17,7 +17,7 @@ namespace Poker.Core.Commands
             this.RaiseAmount = raiseAmount;
         }
 
-        public int RaiseAmount 
+        public int RaiseAmount
         {
             get { return this.raiseAmount; }
             set { this.raiseAmount = value; }
@@ -46,11 +46,11 @@ namespace Poker.Core.Commands
                     break;
             }
         }
-        
+
         public void Fold(IPokerDatabase database, ICharacter player)
         {
             Engine.Instance.currDecision = "fold";
-            database.CurrPlayers.Remove(player);
+            database.CyclePlayers.Remove(player);
         }
 
         public void Call(IPokerDatabase database, ICharacter player, int raiseAmount)
@@ -66,7 +66,8 @@ namespace Poker.Core.Commands
         public void AllIn(IPokerDatabase database, ICharacter player)
         {
             Engine.Instance.currDecision = "allin";
-            database.Pot +=player.Chips;
+            database.Pot += player.Chips;
+            player.Chips = 0;
         }
 
         public void Raise(IPokerDatabase database, ICharacter player, int raiseAmount)
@@ -81,7 +82,7 @@ namespace Poker.Core.Commands
 
         public void Check()
         {
-            
+
         }
     }
 }
