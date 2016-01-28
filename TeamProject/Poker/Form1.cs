@@ -16,40 +16,40 @@ using Poker.Core.Factories;
 using Poker.Enums;
 using Poker.Interfaces;
 using Poker.Models;
+using Poker.Properties;
 using Poker.Table;
 
 namespace Poker
 {
     public partial class Form1 : Form
     {
-        private int height = 720;
-        private int width = 1280;
         public Form1()
         {
             InitializeComponent();
         }
         private void bFold_Click(object sender, EventArgs e)
         {
-            //Engine.Instance.ExecuteMsgBox();
-            //Engine.Instance.GotinMethod();
-            //this.bFold.Enabled = false;
-            this.bCall.Visible = false;
-            //Engine.Instance.
+            Engine.Instance.humanDecision = "fold";
+            Engine.Instance.Update();
         }
 
         private void bCheck_Click(object sender, EventArgs e)
         {
-
+            Engine.Instance.humanDecision = "check";
+            Engine.Instance.Update();
         }
 
         private void bCall_Click(object sender, EventArgs e)
         {
-
+            Engine.Instance.humanDecision = "call";
+            Engine.Instance.Update();
         }
 
         private void bRaise_Click(object sender, EventArgs e)
         {
-
+            Engine.Instance.humanDecision = "raise";
+            Engine.Instance.humanRaise = int.Parse(textBoxRaise.Text);
+            Engine.Instance.Update();
         }
 
         private void bAdd_Click(object sender, EventArgs e)
@@ -72,7 +72,359 @@ namespace Poker
 
         }
 
+        //public void InitialDraw()
+        //{
+        //    Panel playerPanel = new Panel();
+        //    int loleh = 500;
+        //    playerPanel.Location = new Point(500, 450);
+        //    playerPanel.BackColor = Color.DarkBlue;
+        //    playerPanel.Size = new Size(100, 175);
+        //    playerPanel.Visible = true;
+        //    this.Controls.Add(playerPanel);
+        //    //Random r = new Random();
+        //    //string[] ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
+        //    //Image[] Deck = new Image[52];
+        //    //Bitmap img = new Bitmap("Assets\\Back\\");
+        //    //PictureBox[] lol = new PictureBox[52];
+        //    //Bitmap backImage = new Bitmap("Assets\\Back\\Back.png");
+        //    PictureBox lol = new PictureBox();
+        //    lol.Location = new System.Drawing.Point(loleh, 200);
+        //    lol.Size = new System.Drawing.Size(5, 2);
+        //    lol.Dock = DockStyle.Fill;
+        //    lol.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            
+            
+
+        //    for (int i = 0; i < Engine.Instance.database.CyclePlayers.Count; i++)
+        //    {
+        //        for (int j = 0; j < Engine.Instance.database.CyclePlayers[i].Hand.Count; j++)
+        //        {
+                    
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 2)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\5.png") ;
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 3)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\9.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 4)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\13.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 5)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\17.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 6)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\21.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 7)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\25.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 8)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\29.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 9)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\33.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 10)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\37.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 11)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\41.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 12)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\45.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 13)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\49.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Clubs &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 14)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\1.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+
+
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 2)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\8.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 3)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\12.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 4)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\16.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 5)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\20.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 6)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\24.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 7)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\28.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 8)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\32.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 9)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\36.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 10)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\40.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 11)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\44.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 12)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\48.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 13)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\52.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Spades &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 14)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\4.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+
+
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 2)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\7.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 3)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\11.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 4)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\15.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 5)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\19.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 6)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\23.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 7)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\27.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 8)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\31.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 9)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\35.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 10)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\39.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 11)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\43.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 12)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\47.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 13)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\51.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Hearts &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 14)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\3.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+
+
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 2)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\6.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 3)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\10.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 4)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\14.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 5)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\18.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 6)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\22.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 7)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\26.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 8)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\30.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 9)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\34.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 10)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\38.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 11)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\42.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 12)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\46.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 13)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\50.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            if (Engine.Instance.database.CyclePlayers[i].Hand[j].CardType == CardType.Diamonds &&
+        //                Engine.Instance.database.CyclePlayers[i].Hand[j].CardPower == 14)
+        //            {
+        //                lol.Image = new Bitmap("Assets\\Cards\\2.png");
+        //                playerPanel.Controls.Add(lol);
+        //            }
+        //            loleh += 100;
+        //        }
+        //    }
+            
+
+        //}
 
     }
 
@@ -208,7 +560,7 @@ namespace Poker
 
     //    int[] Reserve = new int[17];
     //    Image[] Deck = new Image[52];
-    //    PictureBox[] Holder = new PictureBox[52];
+    //    PictureBox[] lol = new PictureBox[52];
 
     //    Timer timer = new Timer();
     //    Timer Updates = new Timer();
@@ -321,29 +673,29 @@ namespace Poker
     //            }
 
     //            Reserve[i] = int.Parse(ImgLocation[i]) - 1;
-    //            Holder[i] = new PictureBox();
-    //            Holder[i].SizeMode = PictureBoxSizeMode.StretchImage;
-    //            Holder[i].Height = 130;
-    //            Holder[i].Width = 80;
-    //            this.Controls.Add(Holder[i]);
-    //            Holder[i].Name = "pb" + i.ToString();
+    //            lol = new PictureBox();
+    //            lol.SizeMode = PictureBoxSizeMode.StretchImage;
+    //            lol.Height = 130;
+    //            lol.Width = 80;
+    //            this.Controls.Add(lol);
+    //            lol.Name = "pb" + i.ToString();
     //            await Task.Delay(200);
 
     //            #region Throwing Cards
     //            if (i < 2)
     //            {
-    //                if (Holder[0].Tag != null)
+    //                if (lol[0].Tag != null)
     //                {
-    //                    Holder[1].Tag = Reserve[1];
+    //                    lol[1].Tag = Reserve[1];
     //                }
-    //                Holder[0].Tag = Reserve[0];
-    //                Holder[i].Image = Deck[i];
-    //                Holder[i].Anchor = (AnchorStyles.Bottom);
-    //                //Holder[i].Dock = DockStyle.Top;
-    //                Holder[i].Location = new Point(horizontal, vertical);
-    //                horizontal += Holder[i].Width;
+    //                lol[0].Tag = Reserve[0];
+    //                lol.Image = Deck[i];
+    //                lol.Anchor = (AnchorStyles.Bottom);
+    //                //lol.Dock = DockStyle.Top;
+    //                lol.Location = new Point(horizontal, vertical);
+    //                horizontal += lol.Width;
     //                this.Controls.Add(playerPanel);
-    //                playerPanel.Location = new Point(Holder[0].Left - 10, Holder[0].Top - 10);
+    //                playerPanel.Location = new Point(lol[0].Left - 10, lol[0].Top - 10);
     //                playerPanel.BackColor = Color.DarkBlue;
     //                playerPanel.Height = 150;
     //                playerPanel.Width = 180;
@@ -355,25 +707,25 @@ namespace Poker
     //                foldedPlayers--;
     //                if (i >= 2 && i < 4)
     //                {
-    //                    if (Holder[2].Tag != null)
+    //                    if (lol[2].Tag != null)
     //                    {
-    //                        Holder[3].Tag = Reserve[3];
+    //                        lol[3].Tag = Reserve[3];
     //                    }
-    //                    Holder[2].Tag = Reserve[2];
+    //                    lol[2].Tag = Reserve[2];
     //                    if (!check)
     //                    {
     //                        horizontal = 15;
     //                        vertical = 420;
     //                    }
     //                    check = true;
-    //                    Holder[i].Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
-    //                    Holder[i].Image = backImage;
-    //                    //Holder[i].Image = Deck[i];
-    //                    Holder[i].Location = new Point(horizontal, vertical);
-    //                    horizontal += Holder[i].Width;
-    //                    Holder[i].Visible = true;
+    //                    lol.Anchor = (AnchorStyles.Bottom | AnchorStyles.Left);
+    //                    lol.Image = backImage;
+    //                    //lol.Image = Deck[i];
+    //                    lol.Location = new Point(horizontal, vertical);
+    //                    horizontal += lol.Width;
+    //                    lol.Visible = true;
     //                    this.Controls.Add(bot1Panel);
-    //                    bot1Panel.Location = new Point(Holder[2].Left - 10, Holder[2].Top - 10);
+    //                    bot1Panel.Location = new Point(lol[2].Left - 10, lol[2].Top - 10);
     //                    bot1Panel.BackColor = Color.DarkBlue;
     //                    bot1Panel.Height = 150;
     //                    bot1Panel.Width = 180;
@@ -390,25 +742,25 @@ namespace Poker
     //                foldedPlayers--;
     //                if (i >= 4 && i < 6)
     //                {
-    //                    if (Holder[4].Tag != null)
+    //                    if (lol[4].Tag != null)
     //                    {
-    //                        Holder[5].Tag = Reserve[5];
+    //                        lol[5].Tag = Reserve[5];
     //                    }
-    //                    Holder[4].Tag = Reserve[4];
+    //                    lol[4].Tag = Reserve[4];
     //                    if (!check)
     //                    {
     //                        horizontal = 75;
     //                        vertical = 65;
     //                    }
     //                    check = true;
-    //                    Holder[i].Anchor = (AnchorStyles.Top | AnchorStyles.Left);
-    //                    Holder[i].Image = backImage;
-    //                    //Holder[i].Image = Deck[i];
-    //                    Holder[i].Location = new Point(horizontal, vertical);
-    //                    horizontal += Holder[i].Width;
-    //                    Holder[i].Visible = true;
+    //                    lol.Anchor = (AnchorStyles.Top | AnchorStyles.Left);
+    //                    lol.Image = backImage;
+    //                    //lol.Image = Deck[i];
+    //                    lol.Location = new Point(horizontal, vertical);
+    //                    horizontal += lol.Width;
+    //                    lol.Visible = true;
     //                    this.Controls.Add(bot2Panel);
-    //                    bot2Panel.Location = new Point(Holder[4].Left - 10, Holder[4].Top - 10);
+    //                    bot2Panel.Location = new Point(lol[4].Left - 10, lol[4].Top - 10);
     //                    bot2Panel.BackColor = Color.DarkBlue;
     //                    bot2Panel.Height = 150;
     //                    bot2Panel.Width = 180;
@@ -424,25 +776,25 @@ namespace Poker
     //                foldedPlayers--;
     //                if (i >= 6 && i < 8)
     //                {
-    //                    if (Holder[6].Tag != null)
+    //                    if (lol[6].Tag != null)
     //                    {
-    //                        Holder[7].Tag = Reserve[7];
+    //                        lol[7].Tag = Reserve[7];
     //                    }
-    //                    Holder[6].Tag = Reserve[6];
+    //                    lol[6].Tag = Reserve[6];
     //                    if (!check)
     //                    {
     //                        horizontal = 590;
     //                        vertical = 25;
     //                    }
     //                    check = true;
-    //                    Holder[i].Anchor = (AnchorStyles.Top);
-    //                    Holder[i].Image = backImage;
-    //                    //Holder[i].Image = Deck[i];
-    //                    Holder[i].Location = new Point(horizontal, vertical);
-    //                    horizontal += Holder[i].Width;
-    //                    Holder[i].Visible = true;
+    //                    lol.Anchor = (AnchorStyles.Top);
+    //                    lol.Image = backImage;
+    //                    //lol.Image = Deck[i];
+    //                    lol.Location = new Point(horizontal, vertical);
+    //                    horizontal += lol.Width;
+    //                    lol.Visible = true;
     //                    this.Controls.Add(bot3Panel);
-    //                    bot3Panel.Location = new Point(Holder[6].Left - 10, Holder[6].Top - 10);
+    //                    bot3Panel.Location = new Point(lol[6].Left - 10, lol[6].Top - 10);
     //                    bot3Panel.BackColor = Color.DarkBlue;
     //                    bot3Panel.Height = 150;
     //                    bot3Panel.Width = 180;
@@ -458,25 +810,25 @@ namespace Poker
     //                foldedPlayers--;
     //                if (i >= 8 && i < 10)
     //                {
-    //                    if (Holder[8].Tag != null)
+    //                    if (lol[8].Tag != null)
     //                    {
-    //                        Holder[9].Tag = Reserve[9];
+    //                        lol[9].Tag = Reserve[9];
     //                    }
-    //                    Holder[8].Tag = Reserve[8];
+    //                    lol[8].Tag = Reserve[8];
     //                    if (!check)
     //                    {
     //                        horizontal = 1115;
     //                        vertical = 65;
     //                    }
     //                    check = true;
-    //                    Holder[i].Anchor = (AnchorStyles.Top | AnchorStyles.Right);
-    //                    Holder[i].Image = backImage;
-    //                    //Holder[i].Image = Deck[i];
-    //                    Holder[i].Location = new Point(horizontal, vertical);
-    //                    horizontal += Holder[i].Width;
-    //                    Holder[i].Visible = true;
+    //                    lol.Anchor = (AnchorStyles.Top | AnchorStyles.Right);
+    //                    lol.Image = backImage;
+    //                    //lol.Image = Deck[i];
+    //                    lol.Location = new Point(horizontal, vertical);
+    //                    horizontal += lol.Width;
+    //                    lol.Visible = true;
     //                    this.Controls.Add(bot4Panel);
-    //                    bot4Panel.Location = new Point(Holder[8].Left - 10, Holder[8].Top - 10);
+    //                    bot4Panel.Location = new Point(lol[8].Left - 10, lol[8].Top - 10);
     //                    bot4Panel.BackColor = Color.DarkBlue;
     //                    bot4Panel.Height = 150;
     //                    bot4Panel.Width = 180;
@@ -492,25 +844,25 @@ namespace Poker
     //                foldedPlayers--;
     //                if (i >= 10 && i < 12)
     //                {
-    //                    if (Holder[10].Tag != null)
+    //                    if (lol[10].Tag != null)
     //                    {
-    //                        Holder[11].Tag = Reserve[11];
+    //                        lol[11].Tag = Reserve[11];
     //                    }
-    //                    Holder[10].Tag = Reserve[10];
+    //                    lol[10].Tag = Reserve[10];
     //                    if (!check)
     //                    {
     //                        horizontal = 1160;
     //                        vertical = 420;
     //                    }
     //                    check = true;
-    //                    Holder[i].Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
-    //                    Holder[i].Image = backImage;
-    //                    //Holder[i].Image = Deck[i];
-    //                    Holder[i].Location = new Point(horizontal, vertical);
-    //                    horizontal += Holder[i].Width;
-    //                    Holder[i].Visible = true;
+    //                    lol.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
+    //                    lol.Image = backImage;
+    //                    //lol.Image = Deck[i];
+    //                    lol.Location = new Point(horizontal, vertical);
+    //                    horizontal += lol.Width;
+    //                    lol.Visible = true;
     //                    this.Controls.Add(bot5Panel);
-    //                    bot5Panel.Location = new Point(Holder[10].Left - 10, Holder[10].Top - 10);
+    //                    bot5Panel.Location = new Point(lol[10].Left - 10, lol[10].Top - 10);
     //                    bot5Panel.BackColor = Color.DarkBlue;
     //                    bot5Panel.Height = 150;
     //                    bot5Panel.Width = 180;
@@ -523,13 +875,13 @@ namespace Poker
     //            }
     //            if (i >= 12)
     //            {
-    //                Holder[12].Tag = Reserve[12];
-    //                if (i > 12) Holder[13].Tag = Reserve[13];
-    //                if (i > 13) Holder[14].Tag = Reserve[14];
-    //                if (i > 14) Holder[15].Tag = Reserve[15];
+    //                lol[12].Tag = Reserve[12];
+    //                if (i > 12) lol[13].Tag = Reserve[13];
+    //                if (i > 13) lol[14].Tag = Reserve[14];
+    //                if (i > 14) lol[15].Tag = Reserve[15];
     //                if (i > 15)
     //                {
-    //                    Holder[16].Tag = Reserve[16];
+    //                    lol[16].Tag = Reserve[16];
 
     //                }
     //                if (!check)
@@ -538,12 +890,12 @@ namespace Poker
     //                    vertical = 265;
     //                }
     //                check = true;
-    //                if (Holder[i] != null)
+    //                if (lol != null)
     //                {
-    //                    Holder[i].Anchor = AnchorStyles.None;
-    //                    Holder[i].Image = backImage;
-    //                    //Holder[i].Image = Deck[i];
-    //                    Holder[i].Location = new Point(horizontal, vertical);
+    //                    lol.Anchor = AnchorStyles.None;
+    //                    lol.Image = backImage;
+    //                    //lol.Image = Deck[i];
+    //                    lol.Location = new Point(horizontal, vertical);
     //                    horizontal += 110;
     //                }
     //            }
@@ -552,90 +904,90 @@ namespace Poker
     //            if (bot1Chips <= 0)
     //            {
     //                B1Fturn = true;
-    //                Holder[2].Visible = false;
-    //                Holder[3].Visible = false;
+    //                lol[2].Visible = false;
+    //                lol[3].Visible = false;
     //            }
     //            else
     //            {
     //                B1Fturn = false;
     //                if (i == 3)
     //                {
-    //                    if (Holder[3] != null)
+    //                    if (lol[3] != null)
     //                    {
-    //                        Holder[2].Visible = true;
-    //                        Holder[3].Visible = true;
+    //                        lol[2].Visible = true;
+    //                        lol[3].Visible = true;
     //                    }
     //                }
     //            }
     //            if (bot2Chips <= 0)
     //            {
     //                B2Fturn = true;
-    //                Holder[4].Visible = false;
-    //                Holder[5].Visible = false;
+    //                lol[4].Visible = false;
+    //                lol[5].Visible = false;
     //            }
     //            else
     //            {
     //                B2Fturn = false;
     //                if (i == 5)
     //                {
-    //                    if (Holder[5] != null)
+    //                    if (lol[5] != null)
     //                    {
-    //                        Holder[4].Visible = true;
-    //                        Holder[5].Visible = true;
+    //                        lol[4].Visible = true;
+    //                        lol[5].Visible = true;
     //                    }
     //                }
     //            }
     //            if (bot3Chips <= 0)
     //            {
     //                B3Fturn = true;
-    //                Holder[6].Visible = false;
-    //                Holder[7].Visible = false;
+    //                lol[6].Visible = false;
+    //                lol[7].Visible = false;
     //            }
     //            else
     //            {
     //                B3Fturn = false;
     //                if (i == 7)
     //                {
-    //                    if (Holder[7] != null)
+    //                    if (lol[7] != null)
     //                    {
-    //                        Holder[6].Visible = true;
-    //                        Holder[7].Visible = true;
+    //                        lol[6].Visible = true;
+    //                        lol[7].Visible = true;
     //                    }
     //                }
     //            }
     //            if (bot4Chips <= 0)
     //            {
     //                B4Fturn = true;
-    //                Holder[8].Visible = false;
-    //                Holder[9].Visible = false;
+    //                lol[8].Visible = false;
+    //                lol[9].Visible = false;
     //            }
     //            else
     //            {
     //                B4Fturn = false;
     //                if (i == 9)
     //                {
-    //                    if (Holder[9] != null)
+    //                    if (lol[9] != null)
     //                    {
-    //                        Holder[8].Visible = true;
-    //                        Holder[9].Visible = true;
+    //                        lol[8].Visible = true;
+    //                        lol[9].Visible = true;
     //                    }
     //                }
     //            }
     //            if (bot5Chips <= 0)
     //            {
     //                B5Fturn = true;
-    //                Holder[10].Visible = false;
-    //                Holder[11].Visible = false;
+    //                lol[10].Visible = false;
+    //                lol[11].Visible = false;
     //            }
     //            else
     //            {
     //                B5Fturn = false;
     //                if (i == 11)
     //                {
-    //                    if (Holder[11] != null)
+    //                    if (lol[11] != null)
     //                    {
-    //                        Holder[10].Visible = true;
-    //                        Holder[11].Visible = true;
+    //                        lol[10].Visible = true;
+    //                        lol[11].Visible = true;
     //                    }
     //                }
     //            }
@@ -919,8 +1271,8 @@ namespace Poker
     //            #endregion
     //            for (i = 0; i < CardsOnTable; i++)
     //            {
-    //                if (Reserve[i] == int.Parse(Holder[cardOne].Tag.ToString())
-    //                    && Reserve[i + 1] == int.Parse(Holder[cardTwo].Tag.ToString()))
+    //                if (Reserve[i] == int.Parse(lol[cardOne].Tag.ToString())
+    //                    && Reserve[i + 1] == int.Parse(lol[cardTwo].Tag.ToString()))
     //                {
     //                    //Pair from Hand curentCardsValue = 1
     //                    CheckForPairFromHand(ref curentCardsValue, ref power);
@@ -1905,8 +2257,8 @@ namespace Poker
     //        for (int j = 0; j <= 16; j++)
     //        {
     //            //await Task.Delay(5);
-    //            if (Holder[j].Visible)
-    //                Holder[j].Image = Deck[j];
+    //            if (lol[j].Visible)
+    //                lol[j].Image = Deck[j];
     //        }
     //        if (current == sorted.Current)
     //        {
@@ -2081,9 +2433,9 @@ namespace Poker
     //        {
     //            for (int j = 12; j <= 14; j++)
     //            {
-    //                if (Holder[j].Image != Deck[j])
+    //                if (lol[j].Image != Deck[j])
     //                {
-    //                    Holder[j].Image = Deck[j];
+    //                    lol[j].Image = Deck[j];
     //                    pCall = 0; pRaise = 0;
     //                    b1Call = 0; b1Raise = 0;
     //                    b2Call = 0; b2Raise = 0;
@@ -2097,9 +2449,9 @@ namespace Poker
     //        {
     //            for (int j = 14; j <= 15; j++)
     //            {
-    //                if (Holder[j].Image != Deck[j])
+    //                if (lol[j].Image != Deck[j])
     //                {
-    //                    Holder[j].Image = Deck[j];
+    //                    lol[j].Image = Deck[j];
     //                    pCall = 0; pRaise = 0;
     //                    b1Call = 0; b1Raise = 0;
     //                    b2Call = 0; b2Raise = 0;
@@ -2113,9 +2465,9 @@ namespace Poker
     //        {
     //            for (int j = 15; j <= 16; j++)
     //            {
-    //                if (Holder[j].Image != Deck[j])
+    //                if (lol[j].Image != Deck[j])
     //                {
-    //                    Holder[j].Image = Deck[j];
+    //                    lol[j].Image = Deck[j];
     //                    pCall = 0; pRaise = 0;
     //                    b1Call = 0; b1Raise = 0;
     //                    b2Call = 0; b2Raise = 0;
@@ -2216,9 +2568,9 @@ namespace Poker
     //            sorted.Power = 0;
     //            for (int os = 0; os < 17; os++)
     //            {
-    //                Holder[os].Image = null;
-    //                Holder[os].Invalidate();
-    //                Holder[os].Visible = false;
+    //                lol[os].Image = null;
+    //                lol[os].Invalidate();
+    //                lol[os].Visible = false;
     //            }
     //            tbPot.Text = "0";
     //            pStatus.Text = "";
@@ -2388,7 +2740,7 @@ namespace Poker
     //            }
     //            for (int j = 0; j <= 16; j++)
     //            {
-    //                Holder[j].Visible = false;
+    //                lol[j].Visible = false;
     //            }
     //            await Finish(1);
     //        }
@@ -2459,9 +2811,9 @@ namespace Poker
     //        ImgLocation = Directory.GetFiles("Assets\\Cards", "*.png", SearchOption.TopDirectoryOnly);
     //        for (int os = 0; os < 17; os++)
     //        {
-    //            Holder[os].Image = null;
-    //            Holder[os].Invalidate();
-    //            Holder[os].Visible = false;
+    //            lol[os].Image = null;
+    //            lol[os].Invalidate();
+    //            lol[os].Visible = false;
     //        }
     //        await Shuffle();
     //        //await Turns();
@@ -2556,8 +2908,8 @@ namespace Poker
     //        }
     //        if (sFTurn)
     //        {
-    //            Holder[cardOne].Visible = false;
-    //            Holder[cardTwo].Visible = false;
+    //            lol[cardOne].Visible = false;
+    //            lol[cardTwo].Visible = false;
     //        }
     //    }
 

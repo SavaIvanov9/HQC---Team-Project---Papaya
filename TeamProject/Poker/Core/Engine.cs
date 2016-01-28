@@ -71,45 +71,48 @@ namespace Poker.Core
 
             CreatePlayers();
 
-            //Sets players in current game
-            GenerateCurrPlayers();
-
             //Fill deck with cards
             dealer.FillDeck(database, cardFactory);
 
-            //New cycle (нова врътка)
-            if (database.Stages["preflop"])
-            {
-                ResetFolds();
-                ResetRaiseAmount();
-                dealer.Shuffle(database.Deck);
-                dealer.DealCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
 
-                //врътка players
-                GenerateCyclePlayers();
+            //Sets players in current game
+            GenerateCurrPlayers();
 
-                //Sets players power depending on their cards combinations
-                SetPlayersPower();
+            //врътка players
+            GenerateCyclePlayers();
 
+            //AddBlindsToPot();
 
-
-
-
-                //Sets the first starting player 
-                SetFirstPlayer();
-
-                AddBlindsToPot();
-            }
 
             //This happens when human make decision 
-            Update(humanRaise);
+            //Update(humanRaise);
         }
 
-        public void Update(int raise = 0)
+        public void Update()
         {
+            UpdateVariables();
+            CheckForEnd();
+
             //Stages of the round (стейдж на врътката)
             if (database.Stages["preflop"])
             {
+                
+                
+                //Sets the first starting player 
+                SetFirstPlayer();
+
+
+                ResetFolds();
+                ResetRaiseAmount();
+
+                dealer.Shuffle(database.Deck);
+                dealer.DealCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
+
+
+                //Sets players power depending on their cards combinations
+                SetPlayersPower();
+                
+
                 PlayerRotator();
 
                 RemoveFoldedPlayers();
@@ -150,14 +153,14 @@ namespace Poker.Core
 
                 ClearCyclePlayers();
 
-                CheckForEnd();
-
                 ClearCyclePlayers();
 
                 dealer.ReturnCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
 
                 ContinueStage("end", "preflop");
             }
+            UpdateVariables();
+            CheckForEnd();
         }
 
         //Sets players that are declared in the game
@@ -287,6 +290,7 @@ namespace Poker.Core
                     i = 0;
                 }
             }
+
         }
 
         private void RemoveFoldedPlayers()
@@ -315,11 +319,6 @@ namespace Poker.Core
             database.CyclePlayers.Clear();
         }
 
-        public void CheckPot()
-        {
-            form.pStatus.Text = "lol";
-        }
-
         private void ContinueStage(string currentStage, string nextStage)
         {
             database.Stages[currentStage] = false;
@@ -338,25 +337,24 @@ namespace Poker.Core
             database.CurrPlayers[0] = tempObj;
         }
 
-        //moje da ne trea
-        private void SetBlinds()
-        {
-            for (int i = 0; i < database.CyclePlayers.Count; i++)
-            {
-                if (i < database.CyclePlayers.Count - 2)
-                {
-                    blinds.Add(0);
-                }
-                if (i == database.CyclePlayers.Count - 2)
-                {
-                    blinds.Add(smallBlind);
-                }
-                else if (i == database.CyclePlayers.Count - 1)
-                {
-                    blinds.Add(bigBlind);
-                }
-            }
-        }
+        //private void SetBlinds()
+        //{
+        //    for (int i = 0; i < database.CyclePlayers.Count; i++)
+        //    {
+        //        if (i < database.CyclePlayers.Count - 2)
+        //        {
+        //            blinds.Add(0);
+        //        }
+        //        if (i == database.CyclePlayers.Count - 2)
+        //        {
+        //            blinds.Add(smallBlind);
+        //        }
+        //        else if (i == database.CyclePlayers.Count - 1)
+        //        {
+        //            blinds.Add(bigBlind);
+        //        }
+        //    }
+        //}
 
         private void AddCalledChips(ICharacter player, int raiseAmount)
         {
@@ -402,6 +400,39 @@ namespace Poker.Core
                     Application.Exit();
                 }
             }
+        }
+
+        private void UpdateVariables()
+        {
+            form.tbPot.Text = database.Pot.ToString();
+            foreach (ICharacter player in database.CurrPlayers)
+            {
+                switch (player.Name)
+                {
+                    case "Player":
+                        form.tbChips.Text = "Chips: " + player.Chips.ToString();
+                        break;
+                    case "Bot1":
+                        form.tbBotChips1.Text = "Chips: " + player.Chips.ToString();
+                        break;
+                    case "Bot2":
+                        form.tbBotChips2.Text = "Chips: " + player.Chips.ToString();
+                        break;
+                    case "Bot3":
+                        form.tbBotChips3.Text = "Chips: " + player.Chips.ToString();
+                        break;
+                    case "Bot4":
+                        form.tbBotChips4.Text = "Chips: " + player.Chips.ToString();
+                        break;
+                    case "Bot5":
+                        form.tbBotChips5.Text = "Chips: " + player.Chips.ToString();
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+
         }
     }
 }
