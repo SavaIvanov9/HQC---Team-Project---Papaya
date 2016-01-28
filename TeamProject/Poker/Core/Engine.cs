@@ -71,21 +71,21 @@ namespace Poker.Core
 
             CreatePlayers();
 
-            //Fill deck with cards
-            dealer.FillDeck(database, cardFactory);
-
-
             //Sets players in current game
             GenerateCurrPlayers();
 
-            //врътка players
+            //Ð²Ñ€ÑŠÑ‚ÐºÐ° players
             GenerateCyclePlayers();
 
-            //AddBlindsToPot();
 
+            dealer.FillDeck(database, cardFactory);
+            dealer.Shuffle(database.Deck);
+            dealer.DealCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
 
-            //This happens when human make decision 
-            //Update(humanRaise);
+            //Sets players power depending on their cards combinations
+            SetPlayersPower();
+
+            AddBlindsToPot();
         }
 
         public void Update()
@@ -93,14 +93,11 @@ namespace Poker.Core
             UpdateVariables();
             CheckForEnd();
 
-            //Stages of the round (стейдж на врътката)
+            //Stages of the round (ÑÑ‚ÐµÐ¹Ð´Ð¶ Ð½Ð° Ð²Ñ€ÑŠÑ‚ÐºÐ°Ñ‚Ð°)
             if (database.Stages["preflop"])
             {
-                
-                
                 //Sets the first starting player 
                 SetFirstPlayer();
-
 
                 ResetFolds();
                 ResetRaiseAmount();
@@ -108,10 +105,8 @@ namespace Poker.Core
                 dealer.Shuffle(database.Deck);
                 dealer.DealCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
 
-
                 //Sets players power depending on their cards combinations
                 SetPlayersPower();
-                
 
                 PlayerRotator();
 
@@ -431,7 +426,7 @@ namespace Poker.Core
                         break;
                 }
             }
-            
+
 
         }
     }
