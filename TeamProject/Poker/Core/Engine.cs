@@ -80,6 +80,7 @@ namespace Poker.Core
             //New cycle (нова врътка)
             if (database.Stages["preflop"])
             {
+                ResetFolds();
                 ResetRaiseAmount();
                 dealer.Shuffle(database.Deck);
                 dealer.DealCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
@@ -192,26 +193,26 @@ namespace Poker.Core
         //Gives players permission for action
         private void PlayerRotator()
         {
-            for (int i = 0; i < database.CyclePlayers.Count; i++)
+            for (int i = 0; i < database.CurrPlayers.Count; i++)
             {
-                if (database.CyclePlayers[i] is Human)
+                if (database.CurrPlayers[i] is Human && database.CurrPlayers[i].IsFolded == false)
                 {
                     if (currDecision == "raise")
                     {
                         form.bCheck.Enabled = false;
 
-                        if (database.CyclePlayers[i].Chips < raiseAmount)
+                        if (database.CurrPlayers[i].Chips < raiseAmount)
                         {
                             form.bCall.Enabled = false;
 
                             if (humanDecision == "allin")
                             {
-                                commandProcessor.AllIn(database, database.CyclePlayers[i]);
+                                commandProcessor.AllIn(database, database.CurrPlayers[i]);
                             }
 
                             if (humanDecision == "fold")
                             {
-                                commandProcessor.Fold(database, database.CyclePlayers[i]);
+                                commandProcessor.Fold(database, database.CurrPlayers[i]);
                             }
                         }
 
@@ -219,22 +220,22 @@ namespace Poker.Core
                         {
                             if (humanDecision == "call")
                             {
-                                commandProcessor.Call(database, database.CyclePlayers[i], raiseAmount);
+                                commandProcessor.Call(database, database.CurrPlayers[i], raiseAmount);
                             }
 
                             if (humanDecision == "allin")
                             {
-                                commandProcessor.AllIn(database, database.CyclePlayers[i]);
+                                commandProcessor.AllIn(database, database.CurrPlayers[i]);
                             }
 
                             if (humanDecision == "raise")
                             {
-                                commandProcessor.Raise(database, database.CyclePlayers[i], humanRaise);
+                                commandProcessor.Raise(database, database.CurrPlayers[i], humanRaise);
                             }
 
                             if (humanDecision == "fold")
                             {
-                                commandProcessor.Fold(database, database.CyclePlayers[i]);
+                                commandProcessor.Fold(database, database.CurrPlayers[i]);
                             }
                         }
 
@@ -245,17 +246,17 @@ namespace Poker.Core
                     {
                         if (humanDecision == "call")
                         {
-                            commandProcessor.Call(database, database.CyclePlayers[i], raiseAmount);
+                            commandProcessor.Call(database, database.CurrPlayers[i], raiseAmount);
                         }
 
                         if (humanDecision == "allin")
                         {
-                            commandProcessor.AllIn(database, database.CyclePlayers[i]);
+                            commandProcessor.AllIn(database, database.CurrPlayers[i]);
                         }
 
                         if (humanDecision == "raise")
                         {
-                            commandProcessor.Raise(database, database.CyclePlayers[i], humanRaise);
+                            commandProcessor.Raise(database, database.CurrPlayers[i], humanRaise);
                         }
 
                         if (humanDecision == "check")
@@ -265,14 +266,14 @@ namespace Poker.Core
 
                         if (humanDecision == "fold")
                         {
-                            commandProcessor.Fold(database, database.CyclePlayers[i]);
+                            commandProcessor.Fold(database, database.CurrPlayers[i]);
                         }
 
                         AddCalledChips(database.CurrPlayers[i], raiseAmount);
                     }
                 }
 
-                if (database.CurrPlayers[i] is Bot)
+                if (database.CurrPlayers[i] is Bot && database.CurrPlayers[i].IsFolded == false)
                 {
                     database.CurrPlayers[i].MakeDecision(currDecision, database.CyclePlayers[i]);
                 }
@@ -323,14 +324,14 @@ namespace Poker.Core
 
         private void SetFirstPlayer()
         {
-            var tempObj = database.CyclePlayers[database.CyclePlayers.Count - 1];
+            var tempObj = database.CurrPlayers[database.CurrPlayers.Count - 1];
 
-            for (int i = database.CyclePlayers.Count - 1; i >= 1; i--)
+            for (int i = database.CurrPlayers.Count - 1; i >= 1; i--)
             {
-                database.CyclePlayers[i] = database.CyclePlayers[i - 1];
+                database.CurrPlayers[i] = database.CurrPlayers[i - 1];
             }
 
-            database.CyclePlayers[0] = tempObj;
+            database.CurrPlayers[0] = tempObj;
         }
 
         //moje da ne trea
@@ -371,6 +372,14 @@ namespace Poker.Core
             foreach (var player in database.CyclePlayers)
             {
                 dealer.CheckHandPower(player, database.TableCards);
+            }
+        }
+
+        private void ResetFolds()
+        {
+            foreach (var player in database.CurrPlayers)
+            {
+                player.IsFolded = false;
             }
         }
 

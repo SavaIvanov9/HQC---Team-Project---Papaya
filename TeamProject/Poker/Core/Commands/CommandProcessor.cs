@@ -50,6 +50,7 @@ namespace Poker.Core.Commands
         public void Fold(IPokerDatabase database, ICharacter player)
         {
             Engine.Instance.currDecision = "fold";
+            player.IsFolded = true;
             database.CyclePlayers.Remove(player);
         }
 
