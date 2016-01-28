@@ -10,7 +10,7 @@
   <Class Name="Poker.Form1" Collapsed="true">
     <Position X="24" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>OyYh1RjtvmOWkpTFRuLGcS0KcQEjbBTHZ9hrOyM4U0o=</HashCode>
+      <HashCode>ECAAAAhIHCAEghSAQiCCECwCMQABAAAEABAgIAAgAQI=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -31,7 +31,7 @@
   <Class Name="Poker.Core.Engine" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="22.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAABAAAAIQCQAAABAAAAAAAEAAAEAAAI=</HashCode>
+      <HashCode>AUQAAABiAgCVgAFAACAIAQQAQAFAABCBQAEAAIECAA8=</HashCode>
       <FileName>Core\Engine.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
@@ -39,7 +39,7 @@
   <Class Name="Poker.Core.PokerDatabase" Collapsed="true">
     <Position X="0.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIIAAAAAAAAAAAAAAQAAAAAAAAQEAAAEBQBAGAAAQ=</HashCode>
+      <HashCode>AAAAIAAAAAAAAAAAgAgQAIAIAACASEAAAEhQBACAAAQ=</HashCode>
       <FileName>Core\PokerDatabase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -86,7 +86,7 @@
   <Class Name="Poker.Players.Bot" Collapsed="true">
     <Position X="3.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQAgAAAAAAIAAAAAAAAAAAQAAAAAAAAAACgAABAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQACAAAAAA=</HashCode>
       <FileName>Models\Players\Bot.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -94,7 +94,7 @@
   <Class Name="Poker.Players.Character" Collapsed="true">
     <Position X="5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQAgAECAAAJAgAAAAAAQAAQEEAAABAAAAAgAABAA=</HashCode>
+      <HashCode>EAAARAgAECAAAJAgAAAAAAQAAQEEAAABAAAAChAAAAA=</HashCode>
       <FileName>Models\Players\Character.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -102,7 +102,7 @@
   <Class Name="Poker.Players.Human" Collapsed="true">
     <Position X="6.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAQAgAAAAAAIAAAAAAAAAAAQAAAAAAAAAAAgAABAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Players\Human.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -121,12 +121,27 @@
   <Class Name="Poker.Table.Dealer" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="20.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQACAAAAAAAAAAAAAAAAAAABAAAAAAAEAA=</HashCode>
+      <HashCode>AAAAAkAACGQAiAAAAAAgAGQAQAEAMAQjBAAACAEAEAA=</HashCode>
       <FileName>Table\Dealer.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Interface Name="Poker.Interfaces.IComputerControlled" Collapsed="true">
+  <Class Name="Poker.Core.Commands.CommandProcessor" Collapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAgAAAAAAIAAAAAAAAAAAQAAAAAABAIAAgACAAA=</HashCode>
+      <FileName>Core\Commands\CommandProcessor.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Poker.Core.Commands.Constants" Collapsed="true">
+    <Position X="13.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAACAAAAAAAIAAAAAAAAAAABAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Core\Commands\CommandsConstants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Poker.Interfaces.IBot" Collapsed="true">
     <Position X="25.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
@@ -157,7 +172,7 @@
   <Interface Name="Poker.Interfaces.ICardDealable" Collapsed="true">
     <Position X="13.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAACAAAAAA=</HashCode>
       <FileName>Interfaces\ICardDealable.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -171,7 +186,7 @@
   <Interface Name="Poker.Interfaces.ICharacter" Collapsed="true">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAACAAABAAAAAAAAQAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAECAAABAAAAAAAAQAAAAAAAABAAAACBAAAAA=</HashCode>
       <FileName>Interfaces\ICharacter.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -196,11 +211,11 @@
       <FileName>Interfaces\IDeckShuffler.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Poker.Interfaces.IEverythingGivable" Collapsed="true">
+  <Interface Name="Poker.Interfaces.IAllIn" Collapsed="true">
     <Position X="9" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Interfaces\IEverythingGivable.cs</FileName>
+      <FileName>Interfaces\IAllIn.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Poker.Interfaces.IFoldable" Collapsed="true">
@@ -227,14 +242,14 @@
   <Interface Name="Poker.Interfaces.IPlayable" Collapsed="true">
     <Position X="6.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IPlayable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Poker.Interfaces.IPokerDatabase" Collapsed="true">
     <Position X="22.25" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAAAAAAAAAAAAAAAAQAAAAABQAACAAAQ=</HashCode>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAIAIAACAQAAAAAhQAACAAAQ=</HashCode>
       <FileName>Interfaces\IPokerDatabase.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -257,6 +272,20 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IWinnerSetter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Poker.Interfaces.IDeckFillable" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDeckFillable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Poker.Interfaces.IProcessCommand" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IProcessCommand.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="Poker.Enums.CardType" Collapsed="true">

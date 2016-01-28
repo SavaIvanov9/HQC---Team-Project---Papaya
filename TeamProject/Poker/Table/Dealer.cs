@@ -90,10 +90,6 @@ namespace Poker.Table
 
         public void DealCards(IList<ICard> deck, IList<ICharacter> humans, IList<ICharacter> bots, IList<ICard> tableCards)
         {
-            //for (int i = 0; i <= 17; i++)
-            //{
-            //    humans[]
-            //}
             foreach (ICharacter human in humans)
             {
                 human.Hand.Add(deck[deck.Count - 1]);
@@ -122,10 +118,7 @@ namespace Poker.Table
 
         public void ReturnCards(IList<ICard> deck, IList<ICharacter> humans, IList<ICharacter> bots, IList<ICard> tableCards)
         {
-            //for (int i = 0; i <= 17; i++)
-            //{
-            //    humans[]
-            //}
+            
             foreach (ICharacter human in humans)
             {
                 deck.Add(human.Hand[1]);
@@ -145,19 +138,11 @@ namespace Poker.Table
                 bot.Hand.Remove(bot.Hand[0]);
             }
 
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    tableCards.Add(deck[deck.Count - 1]);
-            //    deck.RemoveAt(deck.Count - 1);
-            //}
-
             for (int i = 0; i < 5; i++)
             {
                 deck.Add(tableCards[tableCards.Count - 1]);
                 tableCards.RemoveAt(tableCards.Count - 1);
             }
-
-
         }
 
         public ICharacter SetWinner(List<ICharacter> players, IPokerDatabase database)

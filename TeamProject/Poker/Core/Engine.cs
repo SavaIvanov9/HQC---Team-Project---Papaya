@@ -91,6 +91,10 @@ namespace Poker.Core
                 //Sets players power depending on their cards combinations
                 SetPlayersPower();
 
+
+
+
+
                 //Sets the first starting player 
                 SetFirstPlayer();
 
@@ -275,7 +279,7 @@ namespace Poker.Core
 
                 if (database.CurrPlayers[i] is Bot && database.CurrPlayers[i].IsFolded == false)
                 {
-                    database.CurrPlayers[i].MakeDecision(currDecision, database.CyclePlayers[i]);
+                    database.CurrPlayers[i].MakeDecision(currDecision, database.CurrPlayers[i]);
                 }
 
                 if (i == database.CurrPlayers.Count - 1 && currDecision == "raise")
