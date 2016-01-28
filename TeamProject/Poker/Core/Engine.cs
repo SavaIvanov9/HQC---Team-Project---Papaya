@@ -23,7 +23,7 @@ namespace Poker.Core
         public readonly IPokerDatabase database = new PokerDatabase();
         public readonly IDealer dealer = new Dealer();
         public readonly IProcessCommand commandProcessor = new CommandProcessor();
-         
+
         public int raiseAmount;
 
         public static Form1 form;
@@ -32,7 +32,7 @@ namespace Poker.Core
 
         private static int startingChips = 10000;
         public static int smallBlind = 500;
-        public static int bigBlind = smallBlind*2;
+        public static int bigBlind = smallBlind * 2;
         public List<int> blinds = new List<int>();
 
         public string currDecision;
@@ -74,8 +74,7 @@ namespace Poker.Core
 
         public void Update(bool isRunning)
         {
-            while (isRunning)
-            {
+           
                 CheckForEnd();
 
                 dealer.Shuffle(database.Deck);
@@ -88,7 +87,7 @@ namespace Poker.Core
                 SetFirstPlayer();
 
                 // напраи го на метод // блинд логика
-                database.Pot += (ulong)bigBlind + (ulong)smallBlind;
+                database.Pot += bigBlind + smallBlind;
                 database.CurrPlayers[database.CurrPlayers.Count - 1].Chips -= bigBlind;
                 database.CurrPlayers[database.CurrPlayers.Count - 2].Chips -= smallBlind;
 
@@ -140,7 +139,7 @@ namespace Poker.Core
 
                 dealer.ReturnCards(database.Deck, database.HumanPlayers, database.BotPlayers, database.TableCards);
             }
-        }
+        
         
         private void HumanDecision()
         {

@@ -8,6 +8,6 @@ namespace Poker.Interfaces
 {
     public interface IWinnerSetter
     {
-        void SetWinner();
+        ICharacter SetWinner(List<ICharacter> player, IPokerDatabase database );
     }
 }

@@ -6,6 +6,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Poker.Core;
 using Poker.Enums;
 using Poker.Interfaces;
 using Poker.Models;
@@ -25,13 +26,17 @@ namespace Poker.Table
         private const decimal initialStraightFlush = 8;
         private const decimal initialPowerRoyalFlush = 9;
 
-
-
-
         //TODO:from int to double return type
         public void CheckHandPower(ICharacter player, IList<ICard> tableCards)
         {
             decimal powerToSet = 0;
+
+            powerToSet = CheckFourOfKind(player, tableCards);
+            if (powerToSet >= initialPowerFourOfKind)
+            {
+                player.Power = powerToSet;
+                return;
+            }
 
             powerToSet = CheckForFullHouse(player, tableCards);
             if (powerToSet >= initialPowerFullHouse)
@@ -155,8 +160,16 @@ namespace Poker.Table
 
         }
 
-        public void SetWinner()
+        public ICharacter SetWinner(List<ICharacter> players, IPokerDatabase database)
         {
+            List<ICharacter> clone = new List<ICharacter>();
+            clone.AddRange(players.OrderByDescending(o=>o.Power));
+            //players.OrderByDescending(o => o.Power).ToList();
+            clone[0].Chips += database.Pot;
+            database.Pot = 0;
+            players.Clear();
+            players.AddRange(clone);
+            return players[0];
         }
 
         public void Shuffle(IList<ICard> deck)
@@ -183,10 +196,30 @@ namespace Poker.Table
             }
         }
 
-        //private decimal CheckFourOfKind(ICharacter player, IList<ICard> tableCards)
-        //{
-            
-        //}
+        private decimal CheckFourOfKind(ICharacter player, IList<ICard> tableCards)
+        {
+            List<ICard> allCards = new List<ICard>();
+            allCards.AddRange(player.Hand);
+            allCards.AddRange(tableCards);
+            decimal power = 0;
+            int counter = 0;
+            for (int i = 0; i < allCards.Count; i++)
+            {
+                for (int j = 0; j < allCards.Count; j++)
+                {
+                    if (i != j && allCards[i].CardPower == allCards[j].CardPower)
+                    {
+                        counter++;
+                    }
+                }
+                if (counter == 4)
+                {
+                    power = allCards[i].CardPower;
+                    return initialPowerFourOfKind + (power/100);
+                }
+            }
+            return 0;
+        }
 
         private decimal CheckForFullHouse(ICharacter player, IList<ICard> tableCards)
         {

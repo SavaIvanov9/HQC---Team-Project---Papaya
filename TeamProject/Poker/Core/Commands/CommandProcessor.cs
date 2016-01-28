@@ -58,7 +58,7 @@ namespace Poker.Core.Commands
             Engine.Instance.currDecision = "call";
             if (player.Chips >= raiseAmount)
             {
-                database.Pot += (ulong) raiseAmount;
+                database.Pot += raiseAmount;
                 player.Chips -= raiseAmount;
             }
         }
@@ -66,7 +66,7 @@ namespace Poker.Core.Commands
         public void AllIn(IPokerDatabase database, ICharacter player)
         {
             Engine.Instance.currDecision = "allin";
-            database.Pot += (ulong) player.Chips;
+            database.Pot +=player.Chips;
         }
 
         public void Raise(IPokerDatabase database, ICharacter player, int raiseAmount)
@@ -74,7 +74,7 @@ namespace Poker.Core.Commands
             Engine.Instance.currDecision = "raise";
             if (player.Chips >= raiseAmount)
             {
-                database.Pot += (ulong) raiseAmount;
+                database.Pot += raiseAmount;
                 player.Chips -= raiseAmount;
             }
         }

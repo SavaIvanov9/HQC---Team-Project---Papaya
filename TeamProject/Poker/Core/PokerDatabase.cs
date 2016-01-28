@@ -15,7 +15,7 @@ namespace Poker.Core
         private IList<ICharacter> humanPlayers = new List<ICharacter>();
         private IList<ICard> deck = new List<ICard>();
         private IList<ICard> tableCards = new List<ICard>();
-        private ulong pot = 0;
+        private int pot = 0;
         private Dictionary<string, bool> stages = new Dictionary<string, bool>()
         {
             {"preflop", true },
@@ -27,7 +27,7 @@ namespace Poker.Core
 
         private IList<ICharacter> currPlayers = new List<ICharacter>();
 
-        public ulong Pot
+        public int Pot
         {
             get { return this.pot; }
             set { this.pot = value; }
